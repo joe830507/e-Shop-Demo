@@ -3,7 +3,7 @@
     public enum ProductType : int
     {
         Food = 0,
-        ElectronicProduct = 1,
-        HomeAppliances = 2
+        Electronic = 1,
+        Home_Appliances = 2
     }
 }

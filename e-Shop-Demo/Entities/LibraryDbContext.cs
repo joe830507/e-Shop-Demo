@@ -75,14 +75,14 @@ namespace e_Shop_Demo.Entities
                     Name = "Camera",
                     Price = 9999,
                     Quantity = 20,
-                    Type = (int)ProductType.ElectronicProduct
+                    Type = (int)ProductType.Electronic
                 },
                 new Product{
                     ID = Guid.NewGuid(),
                     Name = "Hair Dryer",
                     Price = 999,
                     Quantity = 30,
-                    Type = (int)ProductType.HomeAppliances
+                    Type = (int)ProductType.Home_Appliances
                 }
             };
             ImportRecord[] importRecords = new ImportRecord[]
