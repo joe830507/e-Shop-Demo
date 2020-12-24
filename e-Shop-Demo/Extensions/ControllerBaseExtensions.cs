@@ -25,7 +25,7 @@ namespace e_Shop_Demo.Extensions
             return new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
-                expiration = TimeZoneInfo.ConvertTimeFromUtc(jwtToken.ValidTo, TimeZoneInfo.Local)
+                expiration = TimeZoneInfo.ConvertTimeFromUtc(jwtToken.ValidTo, TimeZoneInfo.Local).ToString("yyyy-MM-dd hh:mm:ss")
             };
         }
 

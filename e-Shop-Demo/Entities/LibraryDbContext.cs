@@ -1,5 +1,4 @@
-﻿using e_Shop_Demo.Enums;
-using e_Shop_Demo.Utilities;
+﻿using e_Shop_Demo.Utilities;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -61,6 +60,27 @@ namespace e_Shop_Demo.Entities
                     CreateTime = now
                 }
             };
+            ProductType[] productTypes = new ProductType[]
+            {
+                new ProductType
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "Food",
+                    Order = 1
+                },
+                new ProductType
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "Electronic",
+                    Order = 2
+                },
+                new ProductType
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "Home_Appliances",
+                    Order = 3
+                },
+            };
             Product[] products = new Product[]
             {
                 new Product{
@@ -68,21 +88,21 @@ namespace e_Shop_Demo.Entities
                     Name = "Potato Chips",
                     Price = 30,
                     Quantity = 100,
-                    Type = (int)ProductType.Food
+                    Type = productTypes[0].ID
                 },
                 new Product{
                     ID = Guid.NewGuid(),
                     Name = "Camera",
                     Price = 9999,
                     Quantity = 20,
-                    Type = (int)ProductType.Electronic
+                    Type = productTypes[1].ID
                 },
                 new Product{
                     ID = Guid.NewGuid(),
                     Name = "Hair Dryer",
                     Price = 999,
                     Quantity = 30,
-                    Type = (int)ProductType.Home_Appliances
+                    Type = productTypes[2].ID
                 }
             };
             ImportRecord[] importRecords = new ImportRecord[]
@@ -155,6 +175,7 @@ namespace e_Shop_Demo.Entities
             modelBuilder.Entity<Employee>().HasData(employees);
             modelBuilder.Entity<Customer>().HasData(customers);
             modelBuilder.Entity<Supplier>().HasData(suppliers);
+            modelBuilder.Entity<ProductType>().HasData(productTypes);
             modelBuilder.Entity<Product>().HasData(products);
             modelBuilder.Entity<ImportRecord>().HasData(importRecords);
             modelBuilder.Entity<PurchaseRecord>().HasData(purchaseRecords);

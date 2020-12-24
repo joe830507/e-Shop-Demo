@@ -1,4 +1,5 @@
-﻿using e_Shop_Demo.IRepository;
+﻿using e_Shop_Demo.Helpers;
+using e_Shop_Demo.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,13 @@ namespace e_Shop_Demo.Repository
         {
             DbContext = dbContext;
         }
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<PagedList<T>> GetAllAsync(ResourceParameters parameters)
         {
-            return await Task.FromResult(DbContext.Set<T>().AsEnumerable());
+            IQueryable<T> queryableItems = DbContext.Set<T>().AsQueryable();
+            var totalCount = queryableItems.Count();
+            var items = queryableItems.Skip((parameters.PageNumber - 1) * parameters.PageSize).Take(parameters.PageSize).ToList();
+            PagedList<T> pagedList = new PagedList<T>(items, totalCount, parameters.PageNumber, parameters.PageSize);
+            return await Task.FromResult(pagedList);
         }
         public async Task<IEnumerable<T>> GetByConditionAsync(Expression<Func<T, bool>> expression)
         {

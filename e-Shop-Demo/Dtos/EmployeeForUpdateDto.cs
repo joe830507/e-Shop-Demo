@@ -10,7 +10,7 @@ namespace e_Shop_Demo.Dtos
     {
         [Key, EmailAddress, Required(ErrorMessage = "Please write down your account.")]
         public string Account { get; set; }
-        [MinLength(10), MaxLength(40), Required(ErrorMessage = "Please write down your password.")]
+        [Required(ErrorMessage = "Please write down your password.")]
         public string Password { get; set; }
     }
 }

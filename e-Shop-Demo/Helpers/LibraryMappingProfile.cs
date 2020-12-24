@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using e_Shop_Demo.Dtos;
 using e_Shop_Demo.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace e_Shop_Demo.Helpers
 {
@@ -17,6 +13,10 @@ namespace e_Shop_Demo.Helpers
             CreateMap<EmployeeForCreationDto, Employee>();
             CreateMap<EmployeeForLoginDto, Employee>();
             CreateMap<EmployeeForUpdateDto, Employee>();
+            //Customer
+            CreateMap<CustomerForLoginDto, Customer>();
+            //Product
+            CreateMap<Product, ProductDto>();
         }
     }
 }

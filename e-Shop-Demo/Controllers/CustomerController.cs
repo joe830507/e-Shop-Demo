@@ -7,7 +7,6 @@ using e_Shop_Demo.Dtos;
 using e_Shop_Demo.Entities;
 using e_Shop_Demo.Extensions;
 using e_Shop_Demo.IRepository;
-using e_Shop_Demo.Utilities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,39 +19,49 @@ namespace e_Shop_Demo.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class CustomerLoginController : ControllerBase
+    public class CustomerController : ControllerBase
     {
         public IRepositoryWrapper Repository { get; }
         public IConfiguration Configuration { get; }
         public IMapper Mapper { get; }
-        public ILogger<CustomerLoginController> Logger { get; }
-        public CustomerLoginController(IRepositoryWrapper wrapper, IMapper mapper, IConfiguration configuration,
-                                  ILogger<CustomerLoginController> logger)
+        public ILogger<CustomerController> Logger { get; }
+        public CustomerController(IRepositoryWrapper wrapper, IMapper mapper, IConfiguration configuration,
+                                  ILogger<CustomerController> logger)
         {
             Repository = wrapper;
             Mapper = mapper;
+            Logger = logger;
+            Configuration = configuration;
         }
 
-        [HttpPost(Name = nameof(EmpLoginAsync))]
+        [AllowAnonymous]
+        [HttpPost("login", Name = nameof(CustLoginAsync))]
         [Consumes(MediaTypeNames.Application.Json)]
-        public async Task<ActionResult<object>> EmpLoginAsync([FromBody] EmployeeForLoginDto emp)
+        public async Task<ActionResult<object>> CustLoginAsync([FromBody] CustomerForLoginDto cust)
         {
-
-            Employee empForCheck = await Repository.Employee.GetEmpByAccount(emp.Account);
-            if (empForCheck == null)
+            Customer custForCheck = await Repository.Customer.GetCustByAccount(cust.Account);
+            if (custForCheck == null)
                 return BadRequest("No account.");
-            else if (!empForCheck.Password.Equals(SHA256Utility.Encode(emp.Password)))
+            else if (!custForCheck.Password.Equals(cust.Password))
                 return BadRequest("Wrong password.");
-            else if (!empForCheck.Activate)
+            else if (!custForCheck.Activate)
                 return Unauthorized("You should authenticate your account by your email.");
             else
             {
                 var claims = new List<Claim> {
-                    new Claim(JwtRegisteredClaimNames.Sub,emp.Account)
+                    new Claim(JwtRegisteredClaimNames.Sub,cust.Account)
                 };
-                Logger.LogInformation($"Account:{emp.Account}, Action:EmpLoginAsync.");
+                Logger.LogInformation($"Account:{cust.Account}, Action:CustLoginAsync.");
                 return Ok(this.GetToken(Configuration, claims));
             }
+        }
+
+        [AllowAnonymous]
+        [HttpPost(Name = nameof(CustRegisterAsync))]
+        [Consumes(MediaTypeNames.Application.Json)]
+        public async Task<ActionResult<object>> CustRegisterAsync([FromBody] CustomerForLoginDto cust)
+        {
+            return null;
         }
     }
 }
