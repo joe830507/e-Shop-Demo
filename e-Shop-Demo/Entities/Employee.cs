@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace e_Shop_Demo.Entities
 {
-    public class Employee
+    public class Employee : IdentityUser
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid ID { get; set; }
         [EmailAddress, Required]
         public string Account { get; set; }
         [Required]

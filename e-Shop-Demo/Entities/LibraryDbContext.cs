@@ -1,10 +1,11 @@
 ﻿using e_Shop_Demo.Utilities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace e_Shop_Demo.Entities
 {
-    public class LibraryDbContext : DbContext
+    public class LibraryDbContext : IdentityDbContext<Employee, Role, string>
     {
         public DbSet<Employee> Employees { get; set; }
 
@@ -18,10 +19,10 @@ namespace e_Shop_Demo.Entities
             Employee[] employees = new Employee[] {
                 new Employee
                 {
-                    ID = Guid.NewGuid(),
                     Account = "manager123@example.com",
                     Password = SHA256Utility.Encode("qweasd1234"),
-                    CreateTime = now
+                    CreateTime = now,
+                    Activate = true
                 }
             };
             Customer[] customers = new Customer[]
@@ -32,7 +33,7 @@ namespace e_Shop_Demo.Entities
                     Account = "jackson@example.com",
                     Password = SHA256Utility.Encode("jackson123"),
                     BirthDate = new DateTime(1985,2,13),
-                    Activate = false,
+                    Activate = true,
                     CreateTime = now
                 }
             };
@@ -41,21 +42,21 @@ namespace e_Shop_Demo.Entities
                 new Supplier
                 {
                     ID = Guid.NewGuid(),
-                    Name = "Food Manufacturer A",
+                    Name = "食品製造商A",
                     Phone = "0956123845",
                     CreateTime = now
                 },
                 new Supplier
                 {
                     ID = Guid.NewGuid(),
-                    Name = "3C Manufacturer A",
+                    Name = "3C製造商A",
                     Phone = "0954778943",
                     CreateTime = now
                 },
                 new Supplier
                 {
                     ID = Guid.NewGuid(),
-                    Name = "HairDryer Manufacturer A",
+                    Name = "家電製造商A",
                     Phone = "0989543147",
                     CreateTime = now
                 }
@@ -85,24 +86,33 @@ namespace e_Shop_Demo.Entities
             {
                 new Product{
                     ID = Guid.NewGuid(),
-                    Name = "Potato Chips",
+                    Name = "洋芋片",
                     Price = 30,
                     Quantity = 100,
-                    Type = productTypes[0].ID
+                    Type = productTypes[0].ID,
+                    Description = "風靡全球No.1洋芋片品牌, 香甜馬鈴薯精製成片, 使用剛剛好的鹽提味，簡單清爽",
+                    PictureLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Potato-Chips.jpg/640px-Potato-Chips.jpg",
+                    CreateTime = now
                 },
                 new Product{
                     ID = Guid.NewGuid(),
-                    Name = "Camera",
+                    Name = "相機",
                     Price = 9999,
                     Quantity = 20,
-                    Type = productTypes[1].ID
+                    Type = productTypes[1].ID,
+                    Description = "從夜生活到風景照，都能拍得出色； W810 具備可讓您輕鬆拍出清晰精彩相片與 HD 影片的多項功能。6x 光學變焦可讓您拍出細節豐富的特寫相片，派對模式則可讓您輕鬆捕捉精彩夜生活。",
+                    PictureLink = "https://s.yimg.com/zp/images/F84200C57BFF5B8FB763B09688523E28F99D17E3",
+                    CreateTime = now
                 },
                 new Product{
                     ID = Guid.NewGuid(),
-                    Name = "Hair Dryer",
+                    Name = "吹風機",
                     Price = 999,
                     Quantity = 30,
-                    Type = productTypes[2].ID
+                    Type = productTypes[2].ID,
+                    Description = "風靡全球No.1洋芋片品牌, 香甜馬鈴薯精製成片, 使用剛剛好的鹽提味，簡單清爽",
+                    PictureLink = "https://johnlewis.scene7.com/is/image/JohnLewis/237876949",
+                    CreateTime = now
                 }
             };
             ImportRecord[] importRecords = new ImportRecord[]

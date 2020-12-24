@@ -15,6 +15,7 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using e_Shop_Demo.Filters;
 using e_Shop_Demo.Extensions;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace e_Shop_Demo
 {
@@ -37,11 +38,10 @@ namespace e_Shop_Demo
             });
             services.AddControllers();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-            services.AddDbContext<LibraryDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+            services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(Startup));
+            //---------------------Identity
+            services.AddIdentity<Employee, Role>().AddEntityFrameworkStores<LibraryDbContext>();
             //---------------------Authentication
             var securityToken = Configuration.GetSection("Security:Token");
             services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)

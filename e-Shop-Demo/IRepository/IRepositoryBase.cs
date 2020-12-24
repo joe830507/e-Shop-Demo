@@ -8,8 +8,8 @@ namespace e_Shop_Demo.IRepository
 {
     public interface IRepositoryBase<T, TId>
     {
-        Task<PagedList<T>> GetAllAsync(ResourceParameters parameters);
-        Task<IEnumerable<T>> GetByConditionAsync(Expression<Func<T, bool>> expression);
+        Task<IEnumerable<T>> GetAllAsync(ResourceParameters parameters);
+        Task<IEnumerable<T>> GetByConditionAsync(Expression<Func<T, bool>> expression, ResourceParameters parameters);
         Task<T> GetByIdAsync(TId id);
         Task<bool> IsExistAsync(TId id);
         public void Create(T entity);

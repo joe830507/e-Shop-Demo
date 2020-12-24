@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using e_Shop_Demo.Entities;
+using e_Shop_Demo.Helpers;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -32,6 +35,19 @@ namespace e_Shop_Demo.Extensions
         public static object GetToken(this ControllerBase controller, IConfiguration Configuration, List<Claim> claims)
         {
             return GetToken(controller, Configuration, claims, DateTime.Now.AddHours(2));
+        }
+
+        public static string GetPagination<T>(this ControllerBase controller, IEnumerable<T> pagedList)
+        {
+            PagedList<T> pageInfo = (PagedList<T>)pagedList;
+            var paginationMetadata = new
+            {
+                totalCount = pageInfo.TotalCount,
+                pageSize = pageInfo.PageSize,
+                currentPage = pageInfo.CurrentPage,
+                totalPages = pageInfo.TotalPages
+            };
+            return JsonConvert.SerializeObject(paginationMetadata);
         }
     }
 }

@@ -14,5 +14,6 @@ namespace e_Shop_Demo.Entities
         public Guid ProductID { get; set; }
         public double CurrentPrice { get; set; }
         public int Quantity { get; set; }
+        public Customer Customer { get; set; }
     }
 }

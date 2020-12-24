@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using AutoMapper;
 using e_Shop_Demo.Dtos;
+using e_Shop_Demo.Extensions;
 using e_Shop_Demo.Helpers;
 using e_Shop_Demo.IRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -40,14 +41,7 @@ namespace e_Shop_Demo.Controllers
         public async Task<ActionResult> GetProducts([FromQuery] ResourceParameters parameters)
         {
             var pagedList = await Repository.Product.GetAllAsync(parameters);
-            var paginationMetadata = new
-            {
-                totalCount = pagedList.TotalCount,
-                pageSize = pagedList.PageSize,
-                currentPage = pagedList.CurrentPage,
-                totalPages = pagedList.TotalPages
-            };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(paginationMetadata));
+            Response.Headers.Add("X-Pagination", this.GetPagination(pagedList));
             var result = Mapper.Map<IEnumerable<ProductDto>>(pagedList);
             return Ok(result);
         }

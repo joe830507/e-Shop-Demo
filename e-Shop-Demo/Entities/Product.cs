@@ -16,6 +16,8 @@ namespace e_Shop_Demo.Entities
         public int Quantity { get; set; }
         [ForeignKey("ProductType")]
         public Guid Type { get; set; }
+        public string Description { get; set; }
+        public string PictureLink { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime CreateTime { get; set; }
