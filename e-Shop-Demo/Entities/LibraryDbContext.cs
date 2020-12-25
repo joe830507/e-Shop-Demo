@@ -1,11 +1,11 @@
-﻿using e_Shop_Demo.Utilities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using e_Shop_Demo.Enums;
+using e_Shop_Demo.Utilities;
 using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace e_Shop_Demo.Entities
 {
-    public class LibraryDbContext : IdentityDbContext<Employee, Role, string>
+    public class LibraryDbContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
 
@@ -19,10 +19,12 @@ namespace e_Shop_Demo.Entities
             Employee[] employees = new Employee[] {
                 new Employee
                 {
+                    ID = Guid.NewGuid(),
                     Account = "manager123@example.com",
                     Password = SHA256Utility.Encode("qweasd1234"),
                     CreateTime = now,
-                    Activate = true
+                    Activate = true,
+                    Role = (int)Role.Admin
                 }
             };
             Customer[] customers = new Customer[]

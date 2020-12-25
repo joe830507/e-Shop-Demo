@@ -40,8 +40,6 @@ namespace e_Shop_Demo
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(Startup));
-            //---------------------Identity
-            services.AddIdentity<Employee, Role>().AddEntityFrameworkStores<LibraryDbContext>();
             //---------------------Authentication
             var securityToken = Configuration.GetSection("Security:Token");
             services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
@@ -83,7 +81,7 @@ namespace e_Shop_Demo
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(builder => builder.WithOrigins("http://localhost:8080").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseMyNLog(Configuration);
 

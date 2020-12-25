@@ -7,6 +7,7 @@ using AutoMapper;
 using e_Shop_Demo.Dtos;
 using e_Shop_Demo.Entities;
 using e_Shop_Demo.Extensions;
+using e_Shop_Demo.Helpers;
 using e_Shop_Demo.IRepository;
 using e_Shop_Demo.Utilities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -39,13 +40,21 @@ namespace e_Shop_Demo.Controllers
             Configuration = configuration;
             Logger = logger;
         }
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
-        //{
-        //    IEnumerable<Employee> employees = await Repository.Employee.GetAllAsync();
-        //    var result = Mapper.Map<IEnumerable<EmployeeDto>>(employees);
-        //    return Ok(result);
-        //}
+
+        [HttpGet]
+        public async Task<ActionResult> GetEmployees([FromQuery] EmployeeResourceParameters parameters)
+        {
+            IEnumerable<Employee> employees = await Repository.Employee.GetAllAsync(parameters);
+            if (employees == null)
+                return BadRequest("No Employee");
+            else
+            {
+                Response.Headers.Add("X-Pagination", this.GetPagination(employees));
+                var result = Mapper.Map<IEnumerable<EmployeeForDisplayDto>>(employees);
+                return Ok(result);
+            }
+        }
+
         //TODO : Activate by Email
         [HttpPost]
         public async Task<ActionResult> AddEmployee([FromBody] EmployeeForCreationDto employee)
@@ -67,6 +76,7 @@ namespace e_Shop_Demo.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("login", Name = nameof(EmpLoginAsync))]
         [Consumes(MediaTypeNames.Application.Json)]
         public async Task<ActionResult<object>> EmpLoginAsync([FromBody] EmployeeForLoginDto emp)
@@ -74,14 +84,15 @@ namespace e_Shop_Demo.Controllers
             Employee empForCheck = await Repository.Employee.GetEmpByAccount(emp.Account);
             if (empForCheck == null)
                 return BadRequest("No account.");
-            else if (!empForCheck.Password.Equals(SHA256Utility.Encode(emp.Password)))
+            else if (!empForCheck.Password.Equals(emp.Password))
                 return BadRequest("Wrong password.");
             else if (!empForCheck.Activate)
                 return Unauthorized("You should authenticate your account by your email.");
             else
             {
                 var claims = new List<Claim> {
-                    new Claim(JwtRegisteredClaimNames.Sub,emp.Account)
+                    new Claim(JwtRegisteredClaimNames.Sub,emp.Account),
+                    new Claim("auth",empForCheck.Role.ToString())
                 };
                 Logger.LogInformation($"Account:{emp.Account}, Action:EmpLoginAsync.");
                 return Ok(this.GetToken(Configuration, claims));
