@@ -20,11 +20,101 @@ namespace e_Shop_Demo.Entities
                 new Employee
                 {
                     ID = Guid.NewGuid(),
-                    Account = "manager123@example.com",
+                    Account = "admin123@example.com",
                     Password = SHA256Utility.Encode("qweasd1234"),
                     CreateTime = now,
                     Activate = true,
                     Role = (int)Role.Admin
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "manager123@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.Manager
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "general123@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.General
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "general456@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.General
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "gene45656@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.Admin
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "gendsa456@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.Manager
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "gsad5456@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.Admin
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "gs49456@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.Manager
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "gsaasd55456@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.General
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "saad5456@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.Admin
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "gsas8d46@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.Manager
                 }
             };
             Customer[] customers = new Customer[]
@@ -37,6 +127,78 @@ namespace e_Shop_Demo.Entities
                     BirthDate = new DateTime(1985,2,13),
                     Activate = true,
                     CreateTime = now
+                },
+                new Customer
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "jdsaon@example.com",
+                    Password = SHA256Utility.Encode("jackson123"),
+                    BirthDate = new DateTime(1994,5,29),
+                    Activate = true,
+                    CreateTime = now
+                },
+                new Customer
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "jdsao123n@example.com",
+                    Password = SHA256Utility.Encode("jackson123"),
+                    BirthDate = new DateTime(1995,7,3),
+                    Activate = true,
+                    CreateTime = now
+                },
+                new Customer
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "jdsao123n@example.com",
+                    Password = SHA256Utility.Encode("jackson123"),
+                    BirthDate = new DateTime(1977,11,15),
+                    Activate = true,
+                    CreateTime = now
+                },
+                new Customer
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "s4d5623n@example.com",
+                    Password = SHA256Utility.Encode("jackson123"),
+                    BirthDate = new DateTime(1965,1,30),
+                    Activate = true,
+                    CreateTime = now
+                },
+                new Customer
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "fsado123n@example.com",
+                    Password = SHA256Utility.Encode("jackson123"),
+                    BirthDate = new DateTime(1952,3,3),
+                    Activate = true,
+                    CreateTime = now
+                },
+                new Customer
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "gds45dn@example.com",
+                    Password = SHA256Utility.Encode("jackson123"),
+                    BirthDate = new DateTime(1966,9,14),
+                    Activate = true,
+                    CreateTime = now
+                },
+                new Customer
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "dsad4923n@example.com",
+                    Password = SHA256Utility.Encode("jackson123"),
+                    BirthDate = new DateTime(2000,10,31),
+                    Activate = true,
+                    CreateTime = now
+                },
+                new Customer
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "s46asdn@example.com",
+                    Password = SHA256Utility.Encode("jackson123"),
+                    BirthDate = new DateTime(1989,4,19),
+                    Activate = true,
+                    CreateTime = now
                 }
             };
             Supplier[] suppliers = new Supplier[]
@@ -46,6 +208,7 @@ namespace e_Shop_Demo.Entities
                     ID = Guid.NewGuid(),
                     Name = "食品製造商A",
                     Phone = "0956123845",
+                    Email = "abcmanu@gmail.com",
                     CreateTime = now
                 },
                 new Supplier
@@ -53,6 +216,7 @@ namespace e_Shop_Demo.Entities
                     ID = Guid.NewGuid(),
                     Name = "3C製造商A",
                     Phone = "0954778943",
+                    Email = "abcemanu@gmail.com",
                     CreateTime = now
                 },
                 new Supplier
@@ -60,6 +224,79 @@ namespace e_Shop_Demo.Entities
                     ID = Guid.NewGuid(),
                     Name = "家電製造商A",
                     Phone = "0989543147",
+                    Email = "dbcmanu@gmail.com",
+                    CreateTime = now
+                },
+                new Supplier
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "食品製造商C",
+                    Phone = "0956185845",
+                    Email = "sabcmanu@gmail.com",
+                    CreateTime = now
+                },
+                new Supplier
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "3C製造商DDD",
+                    Phone = "0974778943",
+                    Email = "ssaabcemanu@gmail.com",
+                    CreateTime = now
+                },
+                new Supplier
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "家電製造商SDDDA",
+                    Phone = "0989546547",
+                    Email = "aasdbcmanu@gmail.com",
+                    CreateTime = now
+                },
+                new Supplier
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "食品製造商CCC",
+                    Phone = "0912123845",
+                    Email = "sadabcmanu@gmail.com",
+                    CreateTime = now
+                },
+                new Supplier
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "3C製造商ASDW",
+                    Phone = "0958578943",
+                    Email = "as432bcemanu@gmail.com",
+                    CreateTime = now
+                },
+                new Supplier
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "家電製造商SSA",
+                    Phone = "0989373147",
+                    Email = "dbc876manu@gmail.com",
+                    CreateTime = now
+                },
+                new Supplier
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "食品製造商SQA",
+                    Phone = "0955823845",
+                    Email = "as542bcmanu@gmail.com",
+                    CreateTime = now
+                },
+                new Supplier
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "3C製造商FSDA",
+                    Phone = "0954688943",
+                    Email = "ab542cemanu@gmail.com",
+                    CreateTime = now
+                },
+                new Supplier
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "家電製造商QADA",
+                    Phone = "0986983147",
+                    Email = "dbc572manu@gmail.com",
                     CreateTime = now
                 }
             };
@@ -112,7 +349,7 @@ namespace e_Shop_Demo.Entities
                     Price = 999,
                     Quantity = 30,
                     Type = productTypes[2].ID,
-                    Description = "風靡全球No.1洋芋片品牌, 香甜馬鈴薯精製成片, 使用剛剛好的鹽提味，簡單清爽",
+                    Description = "高滲透奈米水離子水分產量提升1800%;礦物負離子出口角度改變效果更集中",
                     PictureLink = "https://johnlewis.scene7.com/is/image/JohnLewis/237876949",
                     CreateTime = now
                 }

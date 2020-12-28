@@ -9,10 +9,8 @@ using e_Shop_Demo.Entities;
 using e_Shop_Demo.Extensions;
 using e_Shop_Demo.Helpers;
 using e_Shop_Demo.IRepository;
-using e_Shop_Demo.Utilities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +29,7 @@ namespace e_Shop_Demo.Controllers
         public IDistributedCache DistributedCache { get; }
         public IMapper Mapper { get; }
         public ILogger<EmployeeController> Logger { get; }
+
         public EmployeeController(IRepositoryWrapper wrapper, IMapper mapper, IDistributedCache distributedCache,
             IConfiguration configuration, ILogger<EmployeeController> logger)
         {
@@ -49,9 +48,12 @@ namespace e_Shop_Demo.Controllers
                 return BadRequest("No Employee");
             else
             {
-                Response.Headers.Add("X-Pagination", this.GetPagination(employees));
                 var result = Mapper.Map<IEnumerable<EmployeeForDisplayDto>>(employees);
-                return Ok(result);
+                return Ok(new
+                {
+                    body = result,
+                    pages = this.GetPagination(employees)
+                });
             }
         }
 
@@ -66,13 +68,14 @@ namespace e_Shop_Demo.Controllers
             {
                 Employee empForAdd = Mapper.Map<Employee>(employee);
                 empForAdd.ID = Guid.NewGuid();
-                empForAdd.Password = SHA256Utility.Encode(employee.Password);
-                empForAdd.Activate = true;
+                empForAdd.Password = employee.Password;
+                empForAdd.Activate = employee.Activate;
+                empForAdd.Role = employee.Role;
+                empForAdd.CreateTime = DateTime.Now;
                 Repository.Employee.Create(empForAdd);
-                if (await Repository.Employee.SaveAsync())
-                    return NoContent();
-                else
+                if (!await Repository.Employee.SaveAsync())
                     return BadRequest();
+                return NoContent();
             }
         }
 
@@ -92,26 +95,36 @@ namespace e_Shop_Demo.Controllers
             {
                 var claims = new List<Claim> {
                     new Claim(JwtRegisteredClaimNames.Sub,emp.Account),
-                    new Claim("auth",empForCheck.Role.ToString())
+                    new Claim("Role",empForCheck.Role.ToString())
                 };
                 Logger.LogInformation($"Account:{emp.Account}, Action:EmpLoginAsync.");
                 return Ok(this.GetToken(Configuration, claims));
             }
         }
 
-        [HttpPatch]
-        public async Task<ActionResult> PartiallyUpdateEmployee([FromBody] EmployeeForUpdateDto employeeForUpdateDto)
+        [HttpPut]
+        public async Task<ActionResult> UpdateEmployee([FromBody] EmployeeForUpdateDto employeeForUpdateDto)
         {
             Employee empForCheck = await Repository.Employee.GetEmpByAccount(employeeForUpdateDto.Account);
             if (empForCheck == null)
                 return NotFound();
-            JsonPatchDocument<Employee> jsonPatch = new JsonPatchDocument<Employee>();
-            jsonPatch.Replace(e => e.Password, SHA256Utility.Encode(employeeForUpdateDto.Password));
-            jsonPatch.ApplyTo(empForCheck, ModelState);
+            empForCheck.UpdateTime = DateTime.Now;
+            if (!string.IsNullOrEmpty(employeeForUpdateDto.Password))
+                empForCheck.Password = employeeForUpdateDto.Password;
             Repository.Employee.Update(empForCheck);
-            if (!ModelState.IsValid || !await Repository.Employee.SaveAsync())
-                return BadRequest(ModelState);
-            return Ok();
+            if (!await Repository.Employee.SaveAsync())
+                return BadRequest("Some error happens");
+            return NoContent();
         }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteEmployees([FromBody] EmployeeForDeleteDto employeeForUpdateDto)
+        {
+            Repository.Employee.DeleteEmployees(employeeForUpdateDto.Employees);
+            if (!await Repository.Employee.SaveAsync())
+                return BadRequest("Some error happens");
+            return NoContent();
+        }
+
     }
 }

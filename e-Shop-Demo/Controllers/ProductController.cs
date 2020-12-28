@@ -41,9 +41,12 @@ namespace e_Shop_Demo.Controllers
         public async Task<ActionResult> GetProducts([FromQuery] ResourceParameters parameters)
         {
             var pagedList = await Repository.Product.GetAllAsync(parameters);
-            Response.Headers.Add("X-Pagination", this.GetPagination(pagedList));
             var result = Mapper.Map<IEnumerable<ProductDto>>(pagedList);
-            return Ok(result);
+            return Ok(new
+            {
+                body = result,
+                pages = this.GetPagination(pagedList)
+            });
         }
 
         [AllowAnonymous]

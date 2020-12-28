@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Mime;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using e_Shop_Demo.Dtos;
+using e_Shop_Demo.Dtos.Customer;
 using e_Shop_Demo.Entities;
 using e_Shop_Demo.Extensions;
+using e_Shop_Demo.Helpers;
 using e_Shop_Demo.IRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
@@ -34,6 +38,24 @@ namespace e_Shop_Demo.Controllers
             Configuration = configuration;
         }
 
+
+        [HttpGet]
+        public async Task<ActionResult> GetCustomers([FromQuery] CustomerResourceParameters parameters)
+        {
+            IEnumerable<Customer> customers = await Repository.Customer.GetAllAsync(parameters);
+            if (customers == null)
+                return BadRequest("No Customer");
+            else
+            {
+                var result = Mapper.Map<IEnumerable<CustomerForDisplayDto>>(customers);
+                return Ok(new
+                {
+                    body = result,
+                    pages = this.GetPagination(customers)
+                });
+            }
+        }
+
         [AllowAnonymous]
         [HttpPost("login", Name = nameof(CustLoginAsync))]
         [Consumes(MediaTypeNames.Application.Json)]
@@ -56,12 +78,48 @@ namespace e_Shop_Demo.Controllers
             }
         }
 
-        [AllowAnonymous]
-        [HttpPost(Name = nameof(CustRegisterAsync))]
-        [Consumes(MediaTypeNames.Application.Json)]
-        public async Task<ActionResult<object>> CustRegisterAsync([FromBody] CustomerForLoginDto cust)
+        [HttpPost(Name = nameof(AddCustomer))]
+        public async Task<ActionResult> AddCustomer([FromBody] CustomerForCreationDto customerForCreationDto)
         {
-            return null;
+            Customer custForCheck = await Repository.Customer.GetCustByAccount(customerForCreationDto.Account);
+            if (custForCheck != null)
+                return BadRequest("This account has existed.");
+            Customer customer = Mapper.Map<Customer>(customerForCreationDto);
+            customer.ID = Guid.NewGuid();
+            customer.CreateTime = DateTime.Now;
+            Repository.Customer.Create(customer);
+            if (!await Repository.Customer.SaveAsync())
+                return BadRequest();
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteCustomers([FromBody] CustomerForDeleteDto customerForDeleteDto)
+        {
+            Repository.Customer.DeleteCustomers(customerForDeleteDto.Customers);
+            if (!await Repository.Customer.SaveAsync())
+                return BadRequest("Some error happens");
+            return NoContent();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateCustomer([FromBody] CustomerForUpdateDto customerForUpdateDto)
+        {
+            Customer customer = Mapper.Map<Customer>(customerForUpdateDto);
+            if (!await Repository.Customer.IsExistAsync(customer.ID))
+                return NotFound();
+            if (string.IsNullOrEmpty(customer.Password))
+            {
+                Customer custForCheck = await Repository.Customer.GetByIdAsync(customer.ID);
+                //Detaching custForCheck for updating the modified instance, or invalid operation will occur.
+                Repository.Customer.DbContext.Entry(custForCheck).State = EntityState.Detached;
+                customer.Password = custForCheck.Password;
+            }
+            customer.UpdateTime = DateTime.Now;
+            Repository.Customer.Update(customer);
+            if (!await Repository.Customer.SaveAsync())
+                return BadRequest("Some error happens");
+            return NoContent();
         }
     }
 }

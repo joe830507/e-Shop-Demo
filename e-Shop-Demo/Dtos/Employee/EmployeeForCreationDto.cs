@@ -12,5 +12,7 @@ namespace e_Shop_Demo.Dtos
         public string Account { get; set; }
         [Required(ErrorMessage = "Please write down your password.")]
         public string Password { get; set; }
+        public bool Activate { get; set; }
+        public int Role { get; set; }
     }
 }

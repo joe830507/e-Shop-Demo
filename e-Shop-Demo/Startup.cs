@@ -15,7 +15,8 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using e_Shop_Demo.Filters;
 using e_Shop_Demo.Extensions;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using e_Shop_Demo.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace e_Shop_Demo
 {
@@ -72,6 +73,7 @@ namespace e_Shop_Demo
             services.AddMyMongoDB(Configuration);
             //---------------------Cors
             services.AddCors();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,7 +83,7 @@ namespace e_Shop_Demo
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:8899").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseMyNLog(Configuration);
 
@@ -103,8 +105,8 @@ namespace e_Shop_Demo
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
             });
-
         }
     }
 }

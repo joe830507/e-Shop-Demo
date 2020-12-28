@@ -24,6 +24,5 @@ namespace e_Shop_Demo.Entities
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime UpdateTime { get; set; }
 
-        public List<PurchaseRecord> PurchaseRecords { get; set; }
     }
 }

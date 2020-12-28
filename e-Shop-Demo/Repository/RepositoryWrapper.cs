@@ -14,6 +14,8 @@ namespace e_Shop_Demo.Repository
 
         public ProductTypesRepository ProductType => new ProductTypesRepository(LibraryDbContext);
 
+        public SupplierRepository Supplier => new SupplierRepository(LibraryDbContext);
+
         public RepositoryWrapper(LibraryDbContext libraryDbContext)
         {
             LibraryDbContext = libraryDbContext;

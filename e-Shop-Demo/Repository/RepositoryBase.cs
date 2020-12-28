@@ -48,11 +48,6 @@ namespace e_Shop_Demo.Repository
             return await DbContext.Set<T>().FindAsync(id);
         }
 
-        public async Task<bool> IsExistAsync(TId id)
-        {
-            return await DbContext.Set<T>().FindAsync(id) != null;
-        }
-
         public void Create(T entity)
         {
             DbContext.Set<T>().Add(entity);
