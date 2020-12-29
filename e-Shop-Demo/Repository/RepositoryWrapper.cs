@@ -16,6 +16,8 @@ namespace e_Shop_Demo.Repository
 
         public SupplierRepository Supplier => new SupplierRepository(LibraryDbContext);
 
+        public ImportRecordRepository ImportRecord => new ImportRecordRepository(LibraryDbContext);
+
         public RepositoryWrapper(LibraryDbContext libraryDbContext)
         {
             LibraryDbContext = libraryDbContext;

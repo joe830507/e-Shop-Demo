@@ -16,5 +16,10 @@ namespace e_Shop_Demo.Dtos.Supplier
         [RegularExpression(@"^09[0-9\s]{8}$",
          ErrorMessage = "Your phone is not allowed.")]
         public string Phone { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Required]
+        public Guid ProductType { get; set; }
     }
 }

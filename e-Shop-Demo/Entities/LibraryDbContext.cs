@@ -115,6 +115,24 @@ namespace e_Shop_Demo.Entities
                     CreateTime = now,
                     Activate = true,
                     Role = (int)Role.Manager
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "gsasdad46@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.Manager
+                },
+                new Employee
+                {
+                    ID = Guid.NewGuid(),
+                    Account = "a22s8d46@example.com",
+                    Password = SHA256Utility.Encode("qweasd1234"),
+                    CreateTime = now,
+                    Activate = true,
+                    Role = (int)Role.Manager
                 }
             };
             Customer[] customers = new Customer[]
@@ -201,6 +219,27 @@ namespace e_Shop_Demo.Entities
                     CreateTime = now
                 }
             };
+            ProductType[] productTypes = new ProductType[]
+            {
+                new ProductType
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "食品",
+                    Order = 1
+                },
+                new ProductType
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "消費性電子產品",
+                    Order = 2
+                },
+                new ProductType
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "家電",
+                    Order = 3
+                },
+            };
             Supplier[] suppliers = new Supplier[]
             {
                 new Supplier
@@ -209,6 +248,7 @@ namespace e_Shop_Demo.Entities
                     Name = "食品製造商A",
                     Phone = "0956123845",
                     Email = "abcmanu@gmail.com",
+                    ProductType = productTypes[0].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -217,6 +257,7 @@ namespace e_Shop_Demo.Entities
                     Name = "3C製造商A",
                     Phone = "0954778943",
                     Email = "abcemanu@gmail.com",
+                    ProductType = productTypes[1].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -225,6 +266,7 @@ namespace e_Shop_Demo.Entities
                     Name = "家電製造商A",
                     Phone = "0989543147",
                     Email = "dbcmanu@gmail.com",
+                    ProductType = productTypes[2].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -233,6 +275,7 @@ namespace e_Shop_Demo.Entities
                     Name = "食品製造商C",
                     Phone = "0956185845",
                     Email = "sabcmanu@gmail.com",
+                    ProductType = productTypes[0].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -241,6 +284,7 @@ namespace e_Shop_Demo.Entities
                     Name = "3C製造商DDD",
                     Phone = "0974778943",
                     Email = "ssaabcemanu@gmail.com",
+                    ProductType = productTypes[1].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -249,6 +293,7 @@ namespace e_Shop_Demo.Entities
                     Name = "家電製造商SDDDA",
                     Phone = "0989546547",
                     Email = "aasdbcmanu@gmail.com",
+                    ProductType = productTypes[2].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -257,6 +302,7 @@ namespace e_Shop_Demo.Entities
                     Name = "食品製造商CCC",
                     Phone = "0912123845",
                     Email = "sadabcmanu@gmail.com",
+                    ProductType = productTypes[0].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -265,6 +311,7 @@ namespace e_Shop_Demo.Entities
                     Name = "3C製造商ASDW",
                     Phone = "0958578943",
                     Email = "as432bcemanu@gmail.com",
+                    ProductType = productTypes[1].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -273,6 +320,7 @@ namespace e_Shop_Demo.Entities
                     Name = "家電製造商SSA",
                     Phone = "0989373147",
                     Email = "dbc876manu@gmail.com",
+                    ProductType = productTypes[2].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -281,6 +329,7 @@ namespace e_Shop_Demo.Entities
                     Name = "食品製造商SQA",
                     Phone = "0955823845",
                     Email = "as542bcmanu@gmail.com",
+                    ProductType = productTypes[0].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -289,6 +338,7 @@ namespace e_Shop_Demo.Entities
                     Name = "3C製造商FSDA",
                     Phone = "0954688943",
                     Email = "ab542cemanu@gmail.com",
+                    ProductType = productTypes[1].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -297,29 +347,9 @@ namespace e_Shop_Demo.Entities
                     Name = "家電製造商QADA",
                     Phone = "0986983147",
                     Email = "dbc572manu@gmail.com",
+                    ProductType = productTypes[2].ID,
                     CreateTime = now
                 }
-            };
-            ProductType[] productTypes = new ProductType[]
-            {
-                new ProductType
-                {
-                    ID = Guid.NewGuid(),
-                    Name = "Food",
-                    Order = 1
-                },
-                new ProductType
-                {
-                    ID = Guid.NewGuid(),
-                    Name = "Electronic",
-                    Order = 2
-                },
-                new ProductType
-                {
-                    ID = Guid.NewGuid(),
-                    Name = "Home_Appliances",
-                    Order = 3
-                },
             };
             Product[] products = new Product[]
             {
@@ -363,6 +393,7 @@ namespace e_Shop_Demo.Entities
                     SupplierID = suppliers[0].ID,
                     Quantity = 100,
                     ImportPrice = 20,
+                    Status = 1,
                     CreateTime = now
                 },
                 new ImportRecord
@@ -372,6 +403,7 @@ namespace e_Shop_Demo.Entities
                     SupplierID = suppliers[1].ID,
                     Quantity = 20,
                     ImportPrice = 5000,
+                    Status = 1,
                     CreateTime = now
                 },
                 new ImportRecord
@@ -381,6 +413,7 @@ namespace e_Shop_Demo.Entities
                     SupplierID = suppliers[2].ID,
                     Quantity = 30,
                     ImportPrice = 600,
+                    Status = 1,
                     CreateTime = now
                 }
             };

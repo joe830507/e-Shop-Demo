@@ -13,6 +13,7 @@ namespace e_Shop_Demo.Entities
         [ForeignKey("Supplier")]
         public Guid SupplierID { get; set; }
         public int Quantity { get; set; }
+        public int Status { get; set; }
         public double ImportPrice { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}", ApplyFormatInEditMode = true)]

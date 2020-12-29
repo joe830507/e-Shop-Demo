@@ -9,5 +9,6 @@ namespace e_Shop_Demo.Dtos
         public string Phone { get; set; }
         public string Email { get; set; }
         public string CreateTime { get; set; }
+        public Guid ProductType { get; set; }
     }
 }

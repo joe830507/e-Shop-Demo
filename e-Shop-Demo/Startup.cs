@@ -16,7 +16,7 @@ using Microsoft.OpenApi.Models;
 using e_Shop_Demo.Filters;
 using e_Shop_Demo.Extensions;
 using e_Shop_Demo.Hubs;
-using Microsoft.AspNetCore.SignalR;
+using e_Shop_Demo.Middlewares;
 
 namespace e_Shop_Demo
 {
@@ -73,6 +73,7 @@ namespace e_Shop_Demo
             services.AddMyMongoDB(Configuration);
             //---------------------Cors
             services.AddCors();
+            //---------------------SingalR
             services.AddSignalR();
         }
 
@@ -98,9 +99,13 @@ namespace e_Shop_Demo
 
             app.UseRouting();
 
+            app.UseMiddleware<LogoutEmployeeKickOutMiddleware>();
+
             app.UseAuthentication();
 
             app.UseAuthorization();
+            
+            app.UseMiddleware<RoleValidatorMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

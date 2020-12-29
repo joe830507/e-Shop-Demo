@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using e_Shop_Demo.Attributes;
 using e_Shop_Demo.Dtos;
+using e_Shop_Demo.Dtos.Employee;
 using e_Shop_Demo.Entities;
+using e_Shop_Demo.Enums;
 using e_Shop_Demo.Extensions;
 using e_Shop_Demo.Helpers;
 using e_Shop_Demo.IRepository;
@@ -15,6 +19,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json;
 using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
 
 namespace e_Shop_Demo.Controllers
@@ -59,6 +66,7 @@ namespace e_Shop_Demo.Controllers
 
         //TODO : Activate by Email
         [HttpPost]
+        [RoleValidator(Role.Manager)]
         public async Task<ActionResult> AddEmployee([FromBody] EmployeeForCreationDto employee)
         {
             Employee empForCheck = await Repository.Employee.GetEmpByAccount(employee.Account);
@@ -95,14 +103,35 @@ namespace e_Shop_Demo.Controllers
             {
                 var claims = new List<Claim> {
                     new Claim(JwtRegisteredClaimNames.Sub,emp.Account),
-                    new Claim("Role",empForCheck.Role.ToString())
+                    new Claim("role",empForCheck.Role.ToString())
                 };
                 Logger.LogInformation($"Account:{emp.Account}, Action:EmpLoginAsync.");
                 return Ok(this.GetToken(Configuration, claims));
             }
         }
 
+        [AllowAnonymous]
+        [HttpPost("logout", Name = nameof(EmpLogoutAsync))]
+        public async Task<ActionResult> EmpLogoutAsync([FromHeader(Name = "Authorization")] string authorization)
+        {
+            string[] splitAuthorization = string.IsNullOrEmpty(authorization) ? null : authorization.Split($" ");
+            if (splitAuthorization.Length == 2 && !splitAuthorization.Equals("null"))
+            {
+                var authorizationArray = splitAuthorization[1].Split($".");
+                var jsonString = Encoding.UTF8.GetString(Base64UrlEncoder.DecodeBytes(authorizationArray[1]));
+                EmployeeInfoDto empInfo = JsonConvert.DeserializeObject<EmployeeInfoDto>(jsonString);
+                DistributedCacheEntryOptions options = new DistributedCacheEntryOptions();
+                // set the same expiration as JWT
+                DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                dateTime = dateTime.AddSeconds(empInfo.Exp).ToLocalTime();
+                options.SetAbsoluteExpiration(new DateTimeOffset(dateTime));
+                await DistributedCache.SetAsync(splitAuthorization[1], Encoding.UTF8.GetBytes("out"), options);
+            }
+            return NoContent();
+        }
+
         [HttpPut]
+        [RoleValidator(Role.Manager)]
         public async Task<ActionResult> UpdateEmployee([FromBody] EmployeeForUpdateDto employeeForUpdateDto)
         {
             Employee empForCheck = await Repository.Employee.GetEmpByAccount(employeeForUpdateDto.Account);
@@ -118,6 +147,7 @@ namespace e_Shop_Demo.Controllers
         }
 
         [HttpDelete]
+        [RoleValidator(Role.Manager)]
         public async Task<ActionResult> DeleteEmployees([FromBody] EmployeeForDeleteDto employeeForUpdateDto)
         {
             Repository.Employee.DeleteEmployees(employeeForUpdateDto.Employees);

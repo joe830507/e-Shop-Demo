@@ -6,6 +6,8 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using AutoMapper;
 using e_Shop_Demo.Dtos;
+using e_Shop_Demo.Dtos.Product;
+using e_Shop_Demo.Entities;
 using e_Shop_Demo.Extensions;
 using e_Shop_Demo.Helpers;
 using e_Shop_Demo.IRepository;
@@ -41,10 +43,17 @@ namespace e_Shop_Demo.Controllers
         public async Task<ActionResult> GetProducts([FromQuery] ResourceParameters parameters)
         {
             var pagedList = await Repository.Product.GetAllAsync(parameters);
-            var result = Mapper.Map<IEnumerable<ProductDto>>(pagedList);
+            var productTypes = await Repository.ProductType.GetAllAsync(null);
+            var result = Mapper.Map<IEnumerable<ProductForDisplayDto>>(pagedList);
+            result.ToList().ForEach(p =>
+            {
+                var name = productTypes.Where(pt => pt.ID.ToString().Equals(p.Type)).Single().Name;
+                p.Type = name;
+            });
             return Ok(new
             {
                 body = result,
+                productTypes,
                 pages = this.GetPagination(pagedList)
             });
         }
@@ -58,6 +67,40 @@ namespace e_Shop_Demo.Controllers
             //productTypes = productTypes.OrderBy(p => p.Order);
             //return Ok(productTypes);
             return null;
+        }
+
+        [HttpPost(Name = nameof(AddProduct))]
+        public async Task<ActionResult> AddProduct([FromBody] ProductForCreationDto productForCreationDto)
+        {
+            Product product = Mapper.Map<Product>(productForCreationDto);
+            product.ID = Guid.NewGuid();
+            product.CreateTime = DateTime.Now;
+            Repository.Product.Create(product);
+            if (!await Repository.Product.SaveAsync())
+                return BadRequest();
+            return NoContent();
+        }
+
+        [HttpPut(Name = nameof(UpdateProduct))]
+        public async Task<ActionResult> UpdateProduct([FromBody] ProductForUpdateDto productForUpdateDto)
+        {
+            Product product = Mapper.Map<Product>(productForUpdateDto);
+            if (!await Repository.Product.IsExistAsync(product.ID))
+                return NotFound();
+            product.UpdateTime = DateTime.Now;
+            Repository.Product.Update(product);
+            if (!await Repository.Product.SaveAsync())
+                return BadRequest();
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteProducts([FromBody] ProductForDeleteDto productForDeleteDto)
+        {
+            Repository.Product.DeleteProducts(productForDeleteDto.Products);
+            if (!await Repository.Product.SaveAsync())
+                return BadRequest("Some error happens");
+            return NoContent();
         }
     }
 }

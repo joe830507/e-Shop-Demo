@@ -13,5 +13,16 @@ namespace e_Shop_Demo.Repository
         {
             DbContext = dbContext;
         }
+
+        public void DeleteProducts(IEnumerable<Guid> entities)
+        {
+            IEnumerable<Product> customers = DbContext.Set<Product>().Where(e => entities.Contains(e.ID)).AsEnumerable();
+            DbContext.Set<Product>().RemoveRange(customers);
+        }
+
+        public async Task<bool> IsExistAsync(Guid id)
+        {
+            return await DbContext.Set<Product>().AnyAsync(s => s.ID.Equals(id));
+        }
     }
 }

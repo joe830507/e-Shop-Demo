@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
+using e_Shop_Demo.Attributes;
 using e_Shop_Demo.Dtos;
 using e_Shop_Demo.Dtos.Supplier;
 using e_Shop_Demo.Entities;
+using e_Shop_Demo.Enums;
 using e_Shop_Demo.Extensions;
 using e_Shop_Demo.Helpers;
 using e_Shop_Demo.IRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -39,9 +42,13 @@ namespace e_Shop_Demo.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetSuppliers([FromQuery] SupplierResourceParameters parameters)
+        
+        public async Task<ActionResult> GetSuppliers([FromQuery] SupplierResourceParameters s)
         {
-            IEnumerable<Supplier> suppliers = await Repository.Supplier.GetAllAsync(parameters);
+            IEnumerable<Supplier> suppliers = s.ProductType == null ?
+                await Repository.Supplier.GetAllAsync(s) :
+                await Repository.Supplier.GetByConditionAsync(e => e.ProductType.ToString().Equals(s.ProductType), s);
+            IEnumerable<ProductType> productTypes = await Repository.ProductType.GetAllAsync(null);
             if (suppliers == null)
                 return BadRequest("No Supplier");
             else
@@ -50,6 +57,7 @@ namespace e_Shop_Demo.Controllers
                 return Ok(new
                 {
                     body = result,
+                    productTypes,
                     pages = this.GetPagination(suppliers)
                 });
             }
@@ -77,6 +85,9 @@ namespace e_Shop_Demo.Controllers
             Supplier supplier = Mapper.Map<Supplier>(supplierForUpdateDto);
             if (!await Repository.Supplier.IsExistAsync(supplier.ID))
                 return NotFound();
+            Supplier oldSupplier = await Repository.Supplier.GetByIdAsync(supplier.ID);
+            Repository.Supplier.DbContext.Entry(oldSupplier).State = EntityState.Detached;
+            supplier.CreateTime = oldSupplier.CreateTime;
             supplier.UpdateTime = DateTime.Now;
             Repository.Supplier.Update(supplier);
             if (!await Repository.Supplier.SaveAsync())

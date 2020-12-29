@@ -10,6 +10,8 @@ namespace e_Shop_Demo.Entities
         public Guid ID { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
+        [ForeignKey("ProductType")]
+        public Guid ProductType { get; set; }
         [EmailAddress]
         public string Email { get; set; }
         [DataType(DataType.DateTime)]

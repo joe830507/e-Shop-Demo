@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using e_Shop_Demo.Dtos;
 using e_Shop_Demo.Dtos.Customer;
+using e_Shop_Demo.Dtos.Product;
 using e_Shop_Demo.Dtos.Supplier;
 using e_Shop_Demo.Entities;
 using e_Shop_Demo.Enums;
@@ -32,7 +33,13 @@ namespace e_Shop_Demo.Helpers
                 .ForMember(e => e.CreateTime, item =>
                            item.MapFrom(i => i.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")));
             //Product
-            CreateMap<Product, ProductDto>();
+            CreateMap<Product, ProductForDisplayDto>()
+                .ForMember(e => e.CreateTime, item =>
+                           item.MapFrom(i => i.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")));
+            CreateMap<ProductForCreationDto, Product>();
+            CreateMap<ProductForUpdateDto, Product>();
+            //ProductType
+            CreateMap<ProductTypeForCreationDto, ProductType>();
             //Supplier
             CreateMap<Supplier, SupplierForDisplayDto>()
                 .ForMember(e => e.CreateTime, item =>

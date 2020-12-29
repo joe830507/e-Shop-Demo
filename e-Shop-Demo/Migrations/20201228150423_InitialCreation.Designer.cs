@@ -10,7 +10,7 @@ using e_Shop_Demo.Entities;
 namespace e_Shop_Demo.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20201227124730_InitialCreation")]
+    [Migration("20201228150423_InitialCreation")]
     partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,7 @@ namespace e_Shop_Demo.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("54b50a2b-087f-49e8-9622-6dc8573136fc"),
+                            ID = new Guid("8dd56f23-ea02-43c8-835a-369efd4c44bf"),
                             Account = "jackson@example.com",
                             Activate = true,
                             BirthDate = new DateTime(1985, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -63,7 +63,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("bea40770-2e93-428d-bdcc-ac0ca3361f8d"),
+                            ID = new Guid("c8fbcabd-3d47-439c-a9e2-47a09f0f8d75"),
                             Account = "jdsaon@example.com",
                             Activate = true,
                             BirthDate = new DateTime(1994, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -73,7 +73,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("90498243-3127-4d99-a019-36def2888868"),
+                            ID = new Guid("392bdc2c-043c-4df0-afc6-667b46208c2f"),
                             Account = "jdsao123n@example.com",
                             Activate = true,
                             BirthDate = new DateTime(1995, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -83,7 +83,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("328956e4-ff4c-4388-86ed-9e58e3404db5"),
+                            ID = new Guid("df5c71b1-3802-4057-8927-3c28272b70ce"),
                             Account = "jdsao123n@example.com",
                             Activate = true,
                             BirthDate = new DateTime(1977, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -93,7 +93,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("737e0942-8cc4-472b-8ab4-4264a0bfc612"),
+                            ID = new Guid("0226eaae-6d0b-4c59-980d-32f654d8adcb"),
                             Account = "s4d5623n@example.com",
                             Activate = true,
                             BirthDate = new DateTime(1965, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -103,7 +103,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("9fcd244d-49dc-4335-b412-a922d4a175d0"),
+                            ID = new Guid("0ca8a9c7-faa4-42db-94d7-3237f2f71091"),
                             Account = "fsado123n@example.com",
                             Activate = true,
                             BirthDate = new DateTime(1952, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -113,7 +113,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("526674f2-94a6-4cb2-bf19-aec6c3ddc320"),
+                            ID = new Guid("7a4316b1-abbc-44a2-89e6-71601e895f67"),
                             Account = "gds45dn@example.com",
                             Activate = true,
                             BirthDate = new DateTime(1966, 9, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -123,7 +123,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("d3d61713-6955-41b2-9f63-e250f2cc8648"),
+                            ID = new Guid("d81a36f0-b13e-4c08-8e13-1327bf34ea2f"),
                             Account = "dsad4923n@example.com",
                             Activate = true,
                             BirthDate = new DateTime(2000, 10, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -133,7 +133,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("b0cad522-d627-4bab-b815-6b3ae35f29ed"),
+                            ID = new Guid("f909c51a-042f-40f1-9749-c7e83bf4a3a6"),
                             Account = "s46asdn@example.com",
                             Activate = true,
                             BirthDate = new DateTime(1989, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -176,7 +176,7 @@ namespace e_Shop_Demo.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("cc9963e0-3dc8-49fa-abee-57bab30af652"),
+                            ID = new Guid("ca5b8afd-05e9-4b1c-a9d6-06a4cd5143ac"),
                             Account = "admin123@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
@@ -186,7 +186,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("9ce83a55-314a-489f-9048-f73958f2302a"),
+                            ID = new Guid("22310594-a2da-4ec6-9979-95ef65d7d9c9"),
                             Account = "manager123@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
@@ -196,7 +196,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("23262d1a-561a-4b43-b6e6-e5accb0a705b"),
+                            ID = new Guid("9fe339d1-9da1-4a53-b26f-91724fcb1d08"),
                             Account = "general123@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
@@ -206,7 +206,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("e5244883-b05e-4b1d-ac43-dc7dfb1f183c"),
+                            ID = new Guid("bb18c2eb-3450-4f67-a3b5-ed2870c89d54"),
                             Account = "general456@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
@@ -216,7 +216,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("39a5b103-8a7f-40b1-a2cb-f5e64ea96302"),
+                            ID = new Guid("51af0c49-38b0-4e44-b140-e8340bd15a0b"),
                             Account = "gene45656@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
@@ -226,7 +226,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("dcf1ba19-2dd0-44dc-8149-d1f23a98544e"),
+                            ID = new Guid("10c8c9dd-f77a-4462-934c-0e6fec693f92"),
                             Account = "gendsa456@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
@@ -236,7 +236,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("e0405cb3-43f7-4efd-a073-ad4e047d055d"),
+                            ID = new Guid("0266d670-8b08-40a9-ae92-65756c156185"),
                             Account = "gsad5456@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
@@ -246,7 +246,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("aa78d0bf-0071-4947-b2d1-ecabc253f441"),
+                            ID = new Guid("ae38e44f-5b4b-419e-aca0-5e280aac0eff"),
                             Account = "gs49456@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
@@ -256,7 +256,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("3afdc236-93d3-4d27-a294-a0ccdd449d12"),
+                            ID = new Guid("915fdf68-9fc3-447d-871b-52f5a871c72f"),
                             Account = "gsaasd55456@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
@@ -266,7 +266,7 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("d810489c-6278-4d92-adb5-92dc05ead351"),
+                            ID = new Guid("74062f3e-1b8b-4988-99a8-6c7aec4b195f"),
                             Account = "saad5456@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
@@ -276,8 +276,28 @@ namespace e_Shop_Demo.Migrations
                         },
                         new
                         {
-                            ID = new Guid("cc664e94-6d43-4d5b-8b2f-8c05406374b9"),
+                            ID = new Guid("066ec126-6a28-4e5f-9eb6-e95b574eb9c7"),
                             Account = "gsas8d46@example.com",
+                            Activate = true,
+                            CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
+                            Password = "UzsxuAjbsHNCXl8C/d2jNWFZ/WvEoOoXMpvXdydnpRQ=",
+                            Role = 1,
+                            UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ID = new Guid("8e65a9ea-5c5d-4de6-b7cf-1910fbc49575"),
+                            Account = "gsasdad46@example.com",
+                            Activate = true,
+                            CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
+                            Password = "UzsxuAjbsHNCXl8C/d2jNWFZ/WvEoOoXMpvXdydnpRQ=",
+                            Role = 1,
+                            UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ID = new Guid("b1d59fd1-b027-44af-a397-ebc10accf67f"),
+                            Account = "a22s8d46@example.com",
                             Activate = true,
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Password = "UzsxuAjbsHNCXl8C/d2jNWFZ/WvEoOoXMpvXdydnpRQ=",
@@ -304,6 +324,9 @@ namespace e_Shop_Demo.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("SupplierID")
                         .HasColumnType("uniqueidentifier");
 
@@ -314,30 +337,33 @@ namespace e_Shop_Demo.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("e24b823f-4643-44b4-9df8-032ebe5ba70f"),
+                            ID = new Guid("c860218d-774e-41bd-ac53-56c32cee0cf7"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             ImportPrice = 20.0,
-                            ProductID = new Guid("6a3ba229-4c82-4c8d-95fc-4570ee2160f4"),
+                            ProductID = new Guid("98d1a3c7-b440-4a25-b8d6-a3872394fc34"),
                             Quantity = 100,
-                            SupplierID = new Guid("2a9bc729-42b3-4db0-934c-308d5cd275bc")
+                            Status = 1,
+                            SupplierID = new Guid("5b733ea1-af3c-49f3-8a06-7074b5999296")
                         },
                         new
                         {
-                            ID = new Guid("4f5bb230-c054-4ff0-800e-1805ba71431e"),
+                            ID = new Guid("bebad55b-c577-4921-8e1e-8520d9ba53b2"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             ImportPrice = 5000.0,
-                            ProductID = new Guid("10b9285b-8958-4a9a-891c-9c2debdbbf0f"),
+                            ProductID = new Guid("22b6222f-cd49-46b4-a5de-2e08cfdf5697"),
                             Quantity = 20,
-                            SupplierID = new Guid("2006913c-16ce-40c4-9a94-3332eaec6675")
+                            Status = 1,
+                            SupplierID = new Guid("eb04df6c-50da-430b-8660-16eba3399c0f")
                         },
                         new
                         {
-                            ID = new Guid("480e0f6f-ff3c-4484-bd44-4fe0ab688fbd"),
+                            ID = new Guid("5075a558-0e10-426d-9a36-35ab8b137820"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             ImportPrice = 600.0,
-                            ProductID = new Guid("7a592d83-4f93-46a6-987c-7c657dcfd450"),
+                            ProductID = new Guid("435948e9-1d67-4757-86e9-fe97d48894b5"),
                             Quantity = 30,
-                            SupplierID = new Guid("36474647-01a3-4bd1-8456-d138f157472e")
+                            Status = 1,
+                            SupplierID = new Guid("e2f50571-dab4-4c65-b2da-b0fb70accbfc")
                         });
                 });
 
@@ -378,38 +404,38 @@ namespace e_Shop_Demo.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("6a3ba229-4c82-4c8d-95fc-4570ee2160f4"),
+                            ID = new Guid("98d1a3c7-b440-4a25-b8d6-a3872394fc34"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Description = "風靡全球No.1洋芋片品牌, 香甜馬鈴薯精製成片, 使用剛剛好的鹽提味，簡單清爽",
                             Name = "洋芋片",
                             PictureLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Potato-Chips.jpg/640px-Potato-Chips.jpg",
                             Price = 30.0,
                             Quantity = 100,
-                            Type = new Guid("0de71ea8-cd80-4d4f-a78d-beb28ab57be5"),
+                            Type = new Guid("c4a7cd61-f4e3-4ce9-b56b-55cf0608288f"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("10b9285b-8958-4a9a-891c-9c2debdbbf0f"),
+                            ID = new Guid("22b6222f-cd49-46b4-a5de-2e08cfdf5697"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Description = "從夜生活到風景照，都能拍得出色； W810 具備可讓您輕鬆拍出清晰精彩相片與 HD 影片的多項功能。6x 光學變焦可讓您拍出細節豐富的特寫相片，派對模式則可讓您輕鬆捕捉精彩夜生活。",
                             Name = "相機",
                             PictureLink = "https://s.yimg.com/zp/images/F84200C57BFF5B8FB763B09688523E28F99D17E3",
                             Price = 9999.0,
                             Quantity = 20,
-                            Type = new Guid("b9f097e3-3cd3-48ab-9bf8-83f273242cf1"),
+                            Type = new Guid("4733c6cd-1b16-40ba-a0f7-11e8b4f14201"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("7a592d83-4f93-46a6-987c-7c657dcfd450"),
+                            ID = new Guid("435948e9-1d67-4757-86e9-fe97d48894b5"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Description = "高滲透奈米水離子水分產量提升1800%;礦物負離子出口角度改變效果更集中",
                             Name = "吹風機",
                             PictureLink = "https://johnlewis.scene7.com/is/image/JohnLewis/237876949",
                             Price = 999.0,
                             Quantity = 30,
-                            Type = new Guid("1ae2c11b-538a-4bc6-a42a-809d6f67be0e"),
+                            Type = new Guid("9c27e7ab-fd09-4057-afa6-3bd589a7856b"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -433,19 +459,19 @@ namespace e_Shop_Demo.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("0de71ea8-cd80-4d4f-a78d-beb28ab57be5"),
+                            ID = new Guid("c4a7cd61-f4e3-4ce9-b56b-55cf0608288f"),
                             Name = "Food",
                             Order = 1
                         },
                         new
                         {
-                            ID = new Guid("b9f097e3-3cd3-48ab-9bf8-83f273242cf1"),
+                            ID = new Guid("4733c6cd-1b16-40ba-a0f7-11e8b4f14201"),
                             Name = "Electronic",
                             Order = 2
                         },
                         new
                         {
-                            ID = new Guid("1ae2c11b-538a-4bc6-a42a-809d6f67be0e"),
+                            ID = new Guid("9c27e7ab-fd09-4057-afa6-3bd589a7856b"),
                             Name = "Home_Appliances",
                             Order = 3
                         });
@@ -481,26 +507,26 @@ namespace e_Shop_Demo.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("65def7d1-87ae-4462-9201-fdeaddbedd53"),
+                            ID = new Guid("7823b830-e85b-4cd2-bd2d-ad8dc128bd42"),
                             CurrentPrice = 30.0,
-                            ProductID = new Guid("6a3ba229-4c82-4c8d-95fc-4570ee2160f4"),
-                            PurchaseRecordId = new Guid("b3a77d7e-22ea-49d7-829a-4a2d559f8c11"),
+                            ProductID = new Guid("98d1a3c7-b440-4a25-b8d6-a3872394fc34"),
+                            PurchaseRecordId = new Guid("37be978c-76c8-469f-8db0-41141e017622"),
                             Quantity = 5
                         },
                         new
                         {
-                            ID = new Guid("640a1a29-2541-4f6e-8f90-abe782e25575"),
+                            ID = new Guid("d0cb6c37-fcb3-409b-bf50-3f7a1008b0f5"),
                             CurrentPrice = 9999.0,
-                            ProductID = new Guid("10b9285b-8958-4a9a-891c-9c2debdbbf0f"),
-                            PurchaseRecordId = new Guid("b3a77d7e-22ea-49d7-829a-4a2d559f8c11"),
+                            ProductID = new Guid("22b6222f-cd49-46b4-a5de-2e08cfdf5697"),
+                            PurchaseRecordId = new Guid("37be978c-76c8-469f-8db0-41141e017622"),
                             Quantity = 1
                         },
                         new
                         {
-                            ID = new Guid("70d28417-ec5a-4f97-86e5-bd774af7b809"),
+                            ID = new Guid("95d51292-fbbe-4fe5-8c19-2478fd87ca7b"),
                             CurrentPrice = 999.0,
-                            ProductID = new Guid("7a592d83-4f93-46a6-987c-7c657dcfd450"),
-                            PurchaseRecordId = new Guid("b3a77d7e-22ea-49d7-829a-4a2d559f8c11"),
+                            ProductID = new Guid("435948e9-1d67-4757-86e9-fe97d48894b5"),
+                            PurchaseRecordId = new Guid("37be978c-76c8-469f-8db0-41141e017622"),
                             Quantity = 1
                         });
                 });
@@ -525,16 +551,14 @@ namespace e_Shop_Demo.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CustomerID");
-
                     b.ToTable("PurchaseRecord");
 
                     b.HasData(
                         new
                         {
-                            ID = new Guid("b3a77d7e-22ea-49d7-829a-4a2d559f8c11"),
+                            ID = new Guid("37be978c-76c8-469f-8db0-41141e017622"),
                             CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CustomerID = new Guid("54b50a2b-087f-49e8-9622-6dc8573136fc"),
+                            CustomerID = new Guid("8dd56f23-ea02-43c8-835a-369efd4c44bf"),
                             PurchaseDate = new DateTime(2020, 12, 16, 15, 12, 30, 0, DateTimeKind.Unspecified),
                             Total = 0.0
                         });
@@ -558,6 +582,9 @@ namespace e_Shop_Demo.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("ProductType")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("UpdateTime")
                         .HasColumnType("datetime2");
 
@@ -568,110 +595,122 @@ namespace e_Shop_Demo.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("2a9bc729-42b3-4db0-934c-308d5cd275bc"),
+                            ID = new Guid("5b733ea1-af3c-49f3-8a06-7074b5999296"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "abcmanu@gmail.com",
                             Name = "食品製造商A",
                             Phone = "0956123845",
+                            ProductType = new Guid("c4a7cd61-f4e3-4ce9-b56b-55cf0608288f"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("2006913c-16ce-40c4-9a94-3332eaec6675"),
+                            ID = new Guid("eb04df6c-50da-430b-8660-16eba3399c0f"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "abcemanu@gmail.com",
                             Name = "3C製造商A",
                             Phone = "0954778943",
+                            ProductType = new Guid("4733c6cd-1b16-40ba-a0f7-11e8b4f14201"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("36474647-01a3-4bd1-8456-d138f157472e"),
+                            ID = new Guid("e2f50571-dab4-4c65-b2da-b0fb70accbfc"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "dbcmanu@gmail.com",
                             Name = "家電製造商A",
                             Phone = "0989543147",
+                            ProductType = new Guid("9c27e7ab-fd09-4057-afa6-3bd589a7856b"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("d7a5ed83-abb2-4247-b05b-7b59deeae745"),
+                            ID = new Guid("7c82b7e0-b56f-4e1c-916f-bfc9e155d78b"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "sabcmanu@gmail.com",
                             Name = "食品製造商C",
                             Phone = "0956185845",
+                            ProductType = new Guid("c4a7cd61-f4e3-4ce9-b56b-55cf0608288f"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("5753271e-3c6a-4abc-8e78-19649504123c"),
+                            ID = new Guid("1ba747a1-ad15-41a6-a9b0-ec153ed1ca75"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "ssaabcemanu@gmail.com",
                             Name = "3C製造商DDD",
                             Phone = "0974778943",
+                            ProductType = new Guid("4733c6cd-1b16-40ba-a0f7-11e8b4f14201"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("bd8bea8f-f830-4d15-94b4-69bb8e604817"),
+                            ID = new Guid("208f4e1a-9d60-4a3e-a0d6-6f411592d87c"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "aasdbcmanu@gmail.com",
                             Name = "家電製造商SDDDA",
                             Phone = "0989546547",
+                            ProductType = new Guid("9c27e7ab-fd09-4057-afa6-3bd589a7856b"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("6f717f57-e425-4f0b-bc69-ae2b6c9b2146"),
+                            ID = new Guid("d84d19ae-b5fb-4d18-919b-b9ca8645def3"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "sadabcmanu@gmail.com",
                             Name = "食品製造商CCC",
                             Phone = "0912123845",
+                            ProductType = new Guid("c4a7cd61-f4e3-4ce9-b56b-55cf0608288f"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("024ec2af-b1b0-44b2-94bf-cba96cbe9cee"),
+                            ID = new Guid("e471cfa3-8c5d-4976-9d26-9333ef989714"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "as432bcemanu@gmail.com",
                             Name = "3C製造商ASDW",
                             Phone = "0958578943",
+                            ProductType = new Guid("4733c6cd-1b16-40ba-a0f7-11e8b4f14201"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("e0eff8ee-d87b-40b7-a743-b914f2191477"),
+                            ID = new Guid("a21bff09-3d54-4956-abb3-c70aa1983908"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "dbc876manu@gmail.com",
                             Name = "家電製造商SSA",
                             Phone = "0989373147",
+                            ProductType = new Guid("9c27e7ab-fd09-4057-afa6-3bd589a7856b"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("b759681a-f56f-4fdc-8efa-06d89e4c17e1"),
+                            ID = new Guid("75d50638-9d64-4bbf-ae55-ea8c72cbff4c"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "as542bcmanu@gmail.com",
                             Name = "食品製造商SQA",
                             Phone = "0955823845",
+                            ProductType = new Guid("c4a7cd61-f4e3-4ce9-b56b-55cf0608288f"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("a0fa2535-cc5e-47d9-bf7f-feee33bd47b5"),
+                            ID = new Guid("63871d42-a1b1-477d-a9fb-fe8624e874a0"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "ab542cemanu@gmail.com",
                             Name = "3C製造商FSDA",
                             Phone = "0954688943",
+                            ProductType = new Guid("4733c6cd-1b16-40ba-a0f7-11e8b4f14201"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = new Guid("4282d932-f344-4f23-8b3e-7d060eb501e8"),
+                            ID = new Guid("fa6e8aa0-2b9b-4038-b72b-93b21f9110be"),
                             CreateTime = new DateTime(2020, 12, 16, 13, 12, 30, 0, DateTimeKind.Unspecified),
                             Email = "dbc572manu@gmail.com",
                             Name = "家電製造商QADA",
                             Phone = "0986983147",
+                            ProductType = new Guid("9c27e7ab-fd09-4057-afa6-3bd589a7856b"),
                             UpdateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -681,15 +720,6 @@ namespace e_Shop_Demo.Migrations
                     b.HasOne("e_Shop_Demo.Entities.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerID");
-                });
-
-            modelBuilder.Entity("e_Shop_Demo.Entities.PurchaseRecord", b =>
-                {
-                    b.HasOne("e_Shop_Demo.Entities.Customer", null)
-                        .WithMany("PurchaseRecords")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

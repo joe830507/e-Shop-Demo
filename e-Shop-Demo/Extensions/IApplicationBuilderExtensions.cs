@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Configuration;
 
 namespace e_Shop_Demo.Extensions
@@ -19,5 +20,6 @@ namespace e_Shop_Demo.Extensions
             // Apply config           
             NLog.LogManager.Configuration = config;
         }
+
     }
 }
