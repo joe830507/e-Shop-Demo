@@ -17,7 +17,7 @@ namespace e_Shop_Demo.Dtos.Product
         [Range(0, 99999999)]
         public int Quantity { get; set; }
         [Required]
-        public Guid Type { get; set; }
+        public Guid ProductTypeID { get; set; }
         [RegularExpression(@"^[\u4e00-\u9fa5_a-zA-Z0-9\s,.。;'`~()_-，；!?@#$%^&*+=]{0,200}$",
          ErrorMessage = "Your description is not allowed.")]
         public string Description { get; set; }

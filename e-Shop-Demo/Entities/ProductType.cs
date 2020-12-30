@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +10,5 @@ namespace e_Shop_Demo.Entities
         public Guid ID { get; set; }
         public string Name { get; set; }
         public int Order { get; set; }
-        public ICollection<Product> Products { get; set; }
     }
 }

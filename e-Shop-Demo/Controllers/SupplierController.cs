@@ -45,9 +45,9 @@ namespace e_Shop_Demo.Controllers
         
         public async Task<ActionResult> GetSuppliers([FromQuery] SupplierResourceParameters s)
         {
-            IEnumerable<Supplier> suppliers = s.ProductType == null ?
+            IEnumerable<Supplier> suppliers = s.ProductTypeID == null ?
                 await Repository.Supplier.GetAllAsync(s) :
-                await Repository.Supplier.GetByConditionAsync(e => e.ProductType.ToString().Equals(s.ProductType), s);
+                await Repository.Supplier.GetByConditionAsync(e => e.ProductType.ID.ToString().Equals(s.ProductTypeID), s);
             IEnumerable<ProductType> productTypes = await Repository.ProductType.GetAllAsync(null);
             if (suppliers == null)
                 return BadRequest("No Supplier");

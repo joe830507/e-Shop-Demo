@@ -46,12 +46,11 @@ namespace e_Shop_Demo.Controllers
                 await Repository.Product.GetAllAsync(parameters) :
                 await Repository.Product.GetByConditionAsync(e => e.ProductTypeID.ToString().Equals(parameters.ProductType), parameters);
             var productTypes = await Repository.ProductType.GetAllAsync(null);
-            var result = Mapper.Map<IEnumerable<ProductForDisplayDto>>(products);
-            result.ToList().ForEach(p =>
+            products.ToList().ForEach(p =>
             {
-                var name = productTypes.Where(pt => pt.ID.ToString().Equals(p.Type)).Single().Name;
-                p.Type = name;
+                p.ProductType = productTypes.Where(pt => pt.ID.Equals(p.ProductTypeID)).First();
             });
+            var result = Mapper.Map<IEnumerable<ProductForDisplayDto>>(products);
             return Ok(new
             {
                 body = result,
