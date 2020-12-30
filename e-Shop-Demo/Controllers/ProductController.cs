@@ -40,11 +40,13 @@ namespace e_Shop_Demo.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetProducts([FromQuery] ResourceParameters parameters)
+        public async Task<ActionResult> GetProducts([FromQuery] ProductResourceParameters parameters)
         {
-            var pagedList = await Repository.Product.GetAllAsync(parameters);
+            IEnumerable<Product> products = parameters.ProductType == null ?
+                await Repository.Product.GetAllAsync(parameters) :
+                await Repository.Product.GetByConditionAsync(e => e.Type.ToString().Equals(parameters.ProductType), parameters);
             var productTypes = await Repository.ProductType.GetAllAsync(null);
-            var result = Mapper.Map<IEnumerable<ProductForDisplayDto>>(pagedList);
+            var result = Mapper.Map<IEnumerable<ProductForDisplayDto>>(products);
             result.ToList().ForEach(p =>
             {
                 var name = productTypes.Where(pt => pt.ID.ToString().Equals(p.Type)).Single().Name;
@@ -54,19 +56,8 @@ namespace e_Shop_Demo.Controllers
             {
                 body = result,
                 productTypes,
-                pages = this.GetPagination(pagedList)
+                pages = this.GetPagination(products)
             });
-        }
-
-        [AllowAnonymous]
-        [HttpGet("types", Name = nameof(GetProductTypes))]
-        [ResponseCache(Duration = 60 * 60 * 2, Location = ResponseCacheLocation.Client)]
-        public async Task<ActionResult> GetProductTypes()
-        {
-            //var productTypes = await Repository.ProductType.GetAllAsync();
-            //productTypes = productTypes.OrderBy(p => p.Order);
-            //return Ok(productTypes);
-            return null;
         }
 
         [HttpPost(Name = nameof(AddProduct))]

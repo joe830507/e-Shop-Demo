@@ -37,10 +37,7 @@ namespace e_Shop_Demo.Middlewares
                         await httpContext.Response.WriteAsync("You are unauthorizated to use this function.");
                     }
                 }
-                else
-                {
-                    await _next(httpContext);
-                }
+                await _next(httpContext);
             }
             catch (Exception e)
             {

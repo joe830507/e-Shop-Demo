@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using e_Shop_Demo.Dtos;
 using e_Shop_Demo.Dtos.Customer;
+using e_Shop_Demo.Dtos.ImportRecord;
 using e_Shop_Demo.Dtos.Product;
 using e_Shop_Demo.Dtos.Supplier;
 using e_Shop_Demo.Entities;
@@ -46,6 +47,12 @@ namespace e_Shop_Demo.Helpers
                            item.MapFrom(i => i.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")));
             CreateMap<SupplierForUpdateDto, Supplier>();
             CreateMap<SupplierForCreationDto, Supplier>();
+            //ImportRecord
+            CreateMap<ImportRecordForCreationDto, ImportRecord>();
+            CreateMap<ImportRecordForUpdateDto, ImportRecord>();
+            CreateMap<ImportRecord, ImportRecordForDisplayDto>()
+                .ForMember(e => e.CreateTime, item =>
+                           item.MapFrom(i => i.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")));
         }
     }
 }

@@ -23,8 +23,6 @@ namespace e_Shop_Demo.Middlewares
             string[] splitAuthorization = string.IsNullOrEmpty(authorization) ? null : authorization.Split($" ");
             if (splitAuthorization.Length == 2 && !splitAuthorization.Equals("null"))
             {
-                System.Console.WriteLine(splitAuthorization[1]);
-                //await DistributedCache.SetStringAsync(splitAuthorization[1], "out");
                 var isKickOut = !string.IsNullOrEmpty(await DistributedCache.GetStringAsync(splitAuthorization[1]));
                 if (isKickOut)
                 {
