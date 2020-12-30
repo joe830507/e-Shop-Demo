@@ -66,7 +66,6 @@ namespace e_Shop_Demo.Controllers
         public async Task<ActionResult> AddImportRecord([FromBody] ImportRecordForCreationDto importRecordForCreationDto)
         {
             ImportRecord importRecord = Mapper.Map<ImportRecord>(importRecordForCreationDto);
-            importRecord.ID = Guid.NewGuid();
             Repository.ImportRecord.Create(importRecord);
             if (!await Repository.ImportRecord.SaveAsync())
                 return BadRequest();

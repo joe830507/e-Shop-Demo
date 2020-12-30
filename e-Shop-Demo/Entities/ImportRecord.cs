@@ -10,7 +10,7 @@ namespace e_Shop_Demo.Entities
         public Guid ID { get; set; }
         [ForeignKey("Product")]
         public Guid ProductID { get; set; }
-        [ForeignKey("Supplier")]
+        public Product Product { get; set; }
         public Guid SupplierID { get; set; }
         public int Quantity { get; set; }
         public int Status { get; set; }

@@ -15,7 +15,9 @@ namespace e_Shop_Demo.Entities
         public string Name { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
-        public Guid Type { get; set; }
+        [ForeignKey("ProductType")]
+        public Guid ProductTypeID { get; set; }
+        public virtual ProductType ProductType { get; set; }
         public string Description { get; set; }
         public string PictureLink { get; set; }
         [DataType(DataType.DateTime)]
@@ -24,6 +26,7 @@ namespace e_Shop_Demo.Entities
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime UpdateTime { get; set; }
+        public ICollection<ImportRecord> ImportRecords { get; set; }
 
     }
 }

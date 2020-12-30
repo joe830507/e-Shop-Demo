@@ -248,7 +248,7 @@ namespace e_Shop_Demo.Entities
                     Name = "食品製造商A",
                     Phone = "0956123845",
                     Email = "abcmanu@gmail.com",
-                    ProductType = productTypes[0].ID,
+                    ProductTypeID = productTypes[0].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -257,7 +257,7 @@ namespace e_Shop_Demo.Entities
                     Name = "3C製造商A",
                     Phone = "0954778943",
                     Email = "abcemanu@gmail.com",
-                    ProductType = productTypes[1].ID,
+                    ProductTypeID = productTypes[1].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -266,7 +266,7 @@ namespace e_Shop_Demo.Entities
                     Name = "家電製造商A",
                     Phone = "0989543147",
                     Email = "dbcmanu@gmail.com",
-                    ProductType = productTypes[2].ID,
+                    ProductTypeID = productTypes[2].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -275,7 +275,7 @@ namespace e_Shop_Demo.Entities
                     Name = "食品製造商C",
                     Phone = "0956185845",
                     Email = "sabcmanu@gmail.com",
-                    ProductType = productTypes[0].ID,
+                    ProductTypeID = productTypes[0].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -284,7 +284,7 @@ namespace e_Shop_Demo.Entities
                     Name = "3C製造商DDD",
                     Phone = "0974778943",
                     Email = "ssaabcemanu@gmail.com",
-                    ProductType = productTypes[1].ID,
+                    ProductTypeID = productTypes[1].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -293,7 +293,7 @@ namespace e_Shop_Demo.Entities
                     Name = "家電製造商SDDDA",
                     Phone = "0989546547",
                     Email = "aasdbcmanu@gmail.com",
-                    ProductType = productTypes[2].ID,
+                    ProductTypeID = productTypes[2].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -302,7 +302,7 @@ namespace e_Shop_Demo.Entities
                     Name = "食品製造商CCC",
                     Phone = "0912123845",
                     Email = "sadabcmanu@gmail.com",
-                    ProductType = productTypes[0].ID,
+                    ProductTypeID = productTypes[0].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -311,7 +311,7 @@ namespace e_Shop_Demo.Entities
                     Name = "3C製造商ASDW",
                     Phone = "0958578943",
                     Email = "as432bcemanu@gmail.com",
-                    ProductType = productTypes[1].ID,
+                    ProductTypeID = productTypes[1].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -320,7 +320,7 @@ namespace e_Shop_Demo.Entities
                     Name = "家電製造商SSA",
                     Phone = "0989373147",
                     Email = "dbc876manu@gmail.com",
-                    ProductType = productTypes[2].ID,
+                    ProductTypeID = productTypes[2].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -329,7 +329,7 @@ namespace e_Shop_Demo.Entities
                     Name = "食品製造商SQA",
                     Phone = "0955823845",
                     Email = "as542bcmanu@gmail.com",
-                    ProductType = productTypes[0].ID,
+                    ProductTypeID = productTypes[0].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -338,7 +338,7 @@ namespace e_Shop_Demo.Entities
                     Name = "3C製造商FSDA",
                     Phone = "0954688943",
                     Email = "ab542cemanu@gmail.com",
-                    ProductType = productTypes[1].ID,
+                    ProductTypeID = productTypes[1].ID,
                     CreateTime = now
                 },
                 new Supplier
@@ -347,7 +347,7 @@ namespace e_Shop_Demo.Entities
                     Name = "家電製造商QADA",
                     Phone = "0986983147",
                     Email = "dbc572manu@gmail.com",
-                    ProductType = productTypes[2].ID,
+                    ProductTypeID = productTypes[2].ID,
                     CreateTime = now
                 }
             };
@@ -358,7 +358,7 @@ namespace e_Shop_Demo.Entities
                     Name = "洋芋片",
                     Price = 30,
                     Quantity = 100,
-                    Type = productTypes[0].ID,
+                    ProductTypeID = productTypes[0].ID,
                     Description = "風靡全球No.1洋芋片品牌, 香甜馬鈴薯精製成片, 使用剛剛好的鹽提味，簡單清爽",
                     PictureLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Potato-Chips.jpg/640px-Potato-Chips.jpg",
                     CreateTime = now
@@ -368,7 +368,7 @@ namespace e_Shop_Demo.Entities
                     Name = "相機",
                     Price = 9999,
                     Quantity = 20,
-                    Type = productTypes[1].ID,
+                    ProductTypeID = productTypes[1].ID,
                     Description = "從夜生活到風景照，都能拍得出色； W810 具備可讓您輕鬆拍出清晰精彩相片與 HD 影片的多項功能。6x 光學變焦可讓您拍出細節豐富的特寫相片，派對模式則可讓您輕鬆捕捉精彩夜生活。",
                     PictureLink = "https://s.yimg.com/zp/images/F84200C57BFF5B8FB763B09688523E28F99D17E3",
                     CreateTime = now
@@ -378,7 +378,7 @@ namespace e_Shop_Demo.Entities
                     Name = "吹風機",
                     Price = 999,
                     Quantity = 30,
-                    Type = productTypes[2].ID,
+                    ProductTypeID = productTypes[2].ID,
                     Description = "高滲透奈米水離子水分產量提升1800%;礦物負離子出口角度改變效果更集中",
                     PictureLink = "https://johnlewis.scene7.com/is/image/JohnLewis/237876949",
                     CreateTime = now
@@ -388,7 +388,7 @@ namespace e_Shop_Demo.Entities
             {
                 new ImportRecord
                 {
-                    ID = Guid.NewGuid(),
+                    ID=Guid.NewGuid(),
                     ProductID = products[0].ID,
                     SupplierID = suppliers[0].ID,
                     Quantity = 100,
@@ -398,7 +398,7 @@ namespace e_Shop_Demo.Entities
                 },
                 new ImportRecord
                 {
-                    ID = Guid.NewGuid(),
+                    ID=Guid.NewGuid(),
                     ProductID = products[1].ID,
                     SupplierID = suppliers[1].ID,
                     Quantity = 20,
@@ -408,7 +408,7 @@ namespace e_Shop_Demo.Entities
                 },
                 new ImportRecord
                 {
-                    ID = Guid.NewGuid(),
+                    ID=Guid.NewGuid(),
                     ProductID = products[2].ID,
                     SupplierID = suppliers[2].ID,
                     Quantity = 30,
@@ -438,9 +438,11 @@ namespace e_Shop_Demo.Entities
             };
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Employee>().HasData(employees);
+            modelBuilder.Entity<Customer>().HasMany(c => c.PurchaseRecords).WithOne(p => p.Customer).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Customer>().HasData(customers);
             modelBuilder.Entity<Supplier>().HasData(suppliers);
             modelBuilder.Entity<ProductType>().HasData(productTypes);
+            modelBuilder.Entity<Product>().HasMany(p => p.ImportRecords).WithOne(i => i.Product).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Product>().HasData(products);
             modelBuilder.Entity<ImportRecord>().HasData(importRecords);
             modelBuilder.Entity<PurchaseRecord>().HasData(purchaseRecords);

@@ -36,10 +36,12 @@ namespace e_Shop_Demo.Helpers
             //Product
             CreateMap<Product, ProductForDisplayDto>()
                 .ForMember(e => e.CreateTime, item =>
-                           item.MapFrom(i => i.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")));
+                           item.MapFrom(i => i.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")))
+                .ForMember(e => e.Type, item =>
+                           item.MapFrom(i => i.ProductType.Name));
             CreateMap<ProductForCreationDto, Product>();
             CreateMap<ProductForUpdateDto, Product>();
-            //ProductType
+            //ProductTypeID
             CreateMap<ProductTypeForCreationDto, ProductType>();
             //Supplier
             CreateMap<Supplier, SupplierForDisplayDto>()
