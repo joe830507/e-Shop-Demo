@@ -11,5 +11,7 @@ namespace e_Shop_Demo.IRepository
         public ProductTypesRepository ProductType { get; }
         public SupplierRepository Supplier { get; }
         public ImportRecordRepository ImportRecord { get; }
+        public PurchaseRecordRepository PurchaseRecord { get; }
+
     }
 }

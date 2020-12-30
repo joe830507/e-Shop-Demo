@@ -9,12 +9,12 @@ namespace e_Shop_Demo.Entities
 {
     public class Product
     {
+        
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ID { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
-        [ForeignKey("ProductType")]
         public Guid Type { get; set; }
         public string Description { get; set; }
         public string PictureLink { get; set; }
@@ -24,5 +24,6 @@ namespace e_Shop_Demo.Entities
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime UpdateTime { get; set; }
+
     }
 }

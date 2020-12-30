@@ -430,27 +430,10 @@ namespace e_Shop_Demo.Entities
             {
                 new PurchaseDetailRecord
                 {
-                    ID = Guid.NewGuid(),
-                    PurchaseRecordId = purchaseRecords[0].ID,
+                    PurchaseRecordID = purchaseRecords[0].ID,
                     ProductID = products[0].ID,
                     CurrentPrice = products[0].Price,
                     Quantity = 5
-                },
-                new PurchaseDetailRecord
-                {
-                    ID = Guid.NewGuid(),
-                    PurchaseRecordId = purchaseRecords[0].ID,
-                    ProductID = products[1].ID,
-                    CurrentPrice = products[1].Price,
-                    Quantity = 1
-                },
-                new PurchaseDetailRecord
-                {
-                    ID = Guid.NewGuid(),
-                    PurchaseRecordId = purchaseRecords[0].ID,
-                    ProductID = products[2].ID,
-                    CurrentPrice = products[2].Price,
-                    Quantity = 1
                 }
             };
             base.OnModelCreating(modelBuilder);
@@ -461,6 +444,7 @@ namespace e_Shop_Demo.Entities
             modelBuilder.Entity<Product>().HasData(products);
             modelBuilder.Entity<ImportRecord>().HasData(importRecords);
             modelBuilder.Entity<PurchaseRecord>().HasData(purchaseRecords);
+            modelBuilder.Entity<PurchaseDetailRecord>().HasKey(p => new { p.PurchaseRecordID, p.ProductID });
             modelBuilder.Entity<PurchaseDetailRecord>().HasData(purchaseDetailRecords);
         }
     }

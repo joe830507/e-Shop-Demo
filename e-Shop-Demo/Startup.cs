@@ -39,7 +39,8 @@ namespace e_Shop_Demo
             });
             services.AddControllers();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-            services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<LibraryDbContext>(options => options.EnableSensitiveDataLogging()
+                                                    .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(Startup));
             //---------------------Authentication
             var securityToken = Configuration.GetSection("Security:Token");
@@ -104,7 +105,7 @@ namespace e_Shop_Demo
             app.UseAuthentication();
 
             app.UseAuthorization();
-            
+
             app.UseMiddleware<RoleValidatorMiddleware>();
 
             app.UseEndpoints(endpoints =>

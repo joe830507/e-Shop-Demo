@@ -18,6 +18,8 @@ namespace e_Shop_Demo.Repository
 
         public ImportRecordRepository ImportRecord => new ImportRecordRepository(LibraryDbContext);
 
+        public PurchaseRecordRepository PurchaseRecord => new PurchaseRecordRepository(LibraryDbContext);
+
         public RepositoryWrapper(LibraryDbContext libraryDbContext)
         {
             LibraryDbContext = libraryDbContext;
