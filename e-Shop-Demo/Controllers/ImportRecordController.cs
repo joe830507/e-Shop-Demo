@@ -83,6 +83,7 @@ namespace e_Shop_Demo.Controllers
                 oldRecord.Quantity = importRecord.Quantity;
                 oldRecord.ImportPrice = importRecord.ImportPrice;
                 oldRecord.Status = importRecord.Status;
+                oldRecord.UpdateTime = DateTime.Now;
                 Repository.ImportRecord.Update(oldRecord);
                 if (oldRecord.Status.Equals(2))
                 {
