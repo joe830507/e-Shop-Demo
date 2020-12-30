@@ -39,7 +39,7 @@ namespace e_Shop_Demo.Helpers
                            item.MapFrom(i => i.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")));
             CreateMap<ProductForCreationDto, Product>();
             CreateMap<ProductForUpdateDto, Product>();
-            //ProductType
+            //ProductTypeID
             CreateMap<ProductTypeForCreationDto, ProductType>();
             //Supplier
             CreateMap<Supplier, SupplierForDisplayDto>()

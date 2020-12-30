@@ -44,7 +44,7 @@ namespace e_Shop_Demo.Controllers
         {
             IEnumerable<Product> products = parameters.ProductType == null ?
                 await Repository.Product.GetAllAsync(parameters) :
-                await Repository.Product.GetByConditionAsync(e => e.Type.ToString().Equals(parameters.ProductType), parameters);
+                await Repository.Product.GetByConditionAsync(e => e.ProductTypeID.ToString().Equals(parameters.ProductType), parameters);
             var productTypes = await Repository.ProductType.GetAllAsync(null);
             var result = Mapper.Map<IEnumerable<ProductForDisplayDto>>(products);
             result.ToList().ForEach(p =>

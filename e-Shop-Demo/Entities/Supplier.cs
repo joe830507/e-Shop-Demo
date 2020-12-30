@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,7 +12,8 @@ namespace e_Shop_Demo.Entities
         public string Name { get; set; }
         public string Phone { get; set; }
         [ForeignKey("ProductType")]
-        public Guid ProductType { get; set; }
+        public Guid ProductTypeID { get; set; }
+        public virtual ProductType ProductType { get; set; }
         [EmailAddress]
         public string Email { get; set; }
         [DataType(DataType.DateTime)]
