@@ -37,7 +37,9 @@ namespace e_Shop_Demo
             {
                 config.Filters.Add<JsonExceptionFilter>();
             });
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             services.AddDbContext<LibraryDbContext>(options => options.EnableSensitiveDataLogging()
                                                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

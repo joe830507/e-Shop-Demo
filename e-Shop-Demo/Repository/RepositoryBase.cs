@@ -36,7 +36,7 @@ namespace e_Shop_Demo.Repository
             return await Task.FromResult(pagedList);
         }
 
-        private PagedList<T> handlePageInfo(IQueryable<T> queryableItems, ResourceParameters parameters)
+        protected PagedList<T> handlePageInfo(IQueryable<T> queryableItems, ResourceParameters parameters)
         {
             var totalCount = queryableItems.Count();
             var items = queryableItems.Skip((parameters.PageNumber - 1) * parameters.PageSize).Take(parameters.PageSize).ToList();

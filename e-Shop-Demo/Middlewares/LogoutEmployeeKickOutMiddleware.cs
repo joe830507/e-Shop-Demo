@@ -21,7 +21,7 @@ namespace e_Shop_Demo.Middlewares
         {
             var authorization = httpContext.Request.Headers[HeaderNames.Authorization].ToString();
             string[] splitAuthorization = string.IsNullOrEmpty(authorization) ? null : authorization.Split($" ");
-            if (splitAuthorization.Length == 2 && !splitAuthorization.Equals("null"))
+            if (splitAuthorization != null && splitAuthorization.Length == 2 && !splitAuthorization.Equals("null"))
             {
                 var isKickOut = !string.IsNullOrEmpty(await DistributedCache.GetStringAsync(splitAuthorization[1]));
                 if (isKickOut)

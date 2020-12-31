@@ -423,7 +423,8 @@ namespace e_Shop_Demo.Entities
                 {
                     ID = Guid.NewGuid(),
                     CustomerID = customers[0].ID,
-                    PurchaseDate = now.AddHours(2)
+                    PurchaseDate = now,
+                    CreateTime = now
                 }
             };
             PurchaseDetailRecord[] purchaseDetailRecords = new PurchaseDetailRecord[]

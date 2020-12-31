@@ -3,6 +3,7 @@ using e_Shop_Demo.Dtos;
 using e_Shop_Demo.Dtos.Customer;
 using e_Shop_Demo.Dtos.ImportRecord;
 using e_Shop_Demo.Dtos.Product;
+using e_Shop_Demo.Dtos.PurchaseRecord;
 using e_Shop_Demo.Dtos.Supplier;
 using e_Shop_Demo.Entities;
 using e_Shop_Demo.Enums;
@@ -55,6 +56,17 @@ namespace e_Shop_Demo.Helpers
             CreateMap<ImportRecord, ImportRecordForDisplayDto>()
                 .ForMember(e => e.CreateTime, item =>
                            item.MapFrom(i => i.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")));
+            //PurchaseRecord
+            CreateMap<PurchaseRecord, PurchaseRecordForDisplayDto>()
+                .ForMember(e => e.CreateTime, item =>
+                           item.MapFrom(i => i.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")))
+                .ForMember(e => e.PurchaseDate, item =>
+                           item.MapFrom(i => i.PurchaseDate.ToString("yyyy-MM-dd hh:mm:ss")))
+                .ForMember(e => e.CustomerID, item =>
+                           item.MapFrom(i => i.CustomerID));
+            CreateMap<PurchaseDetailRecord, PurchaseDetailRecordForDisplayDto>()
+                .ForMember(e => e.ProductName, item =>
+                           item.MapFrom(i => i.Product.Name));
         }
     }
 }

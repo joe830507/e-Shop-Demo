@@ -1,4 +1,5 @@
-﻿using System;
+﻿using e_Shop_Demo.Dtos.PurchaseRecord;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,5 +19,6 @@ namespace e_Shop_Demo.Entities
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime CreateTime { get; set; }
         public virtual ICollection<PurchaseDetailRecord> PurchaseDetailRecords { get; set; }
+        
     }
 }
