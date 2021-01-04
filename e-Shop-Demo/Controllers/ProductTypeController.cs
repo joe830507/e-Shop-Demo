@@ -7,6 +7,8 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace e_Shop_Demo.Controllers
@@ -45,6 +47,17 @@ namespace e_Shop_Demo.Controllers
             if (!await Repository.ProductType.SaveAsync())
                 return BadRequest();
             return NoContent();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetProductTypes()
+        {
+            IEnumerable<ProductType> productTypes = await Repository.ProductType.GetAllAsync(null);
+            if (productTypes == null && productTypes.ToList().Count() == 0)
+            {
+                return BadRequest("There is no productTypes");
+            }
+            return Ok(productTypes);
         }
     }
 }

@@ -87,7 +87,7 @@ namespace e_Shop_Demo
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(builder => builder.WithOrigins("http://localhost:8899").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:8899", "http://localhost:8055").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseMyNLog(Configuration);
 

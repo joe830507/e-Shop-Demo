@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using e_Shop_Demo.Dtos;
@@ -14,8 +15,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
 
 namespace e_Shop_Demo.Controllers
@@ -29,13 +33,15 @@ namespace e_Shop_Demo.Controllers
         public IConfiguration Configuration { get; }
         public IMapper Mapper { get; }
         public ILogger<CustomerController> Logger { get; }
+        public IDistributedCache DistributedCache { get; }
         public CustomerController(IRepositoryWrapper wrapper, IMapper mapper, IConfiguration configuration,
-                                  ILogger<CustomerController> logger)
+                                  IDistributedCache distributedCache, ILogger<CustomerController> logger)
         {
             Repository = wrapper;
             Mapper = mapper;
             Logger = logger;
             Configuration = configuration;
+            DistributedCache = distributedCache;
         }
 
 
@@ -76,6 +82,26 @@ namespace e_Shop_Demo.Controllers
                 Logger.LogInformation($"Account:{cust.Account}, Action:CustLoginAsync.");
                 return Ok(this.GetToken(Configuration, claims));
             }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("logout", Name = nameof(CustLogoutAsync))]
+        public async Task<ActionResult> CustLogoutAsync([FromHeader(Name = "Authorization")] string authorization)
+        {
+            string[] splitAuthorization = string.IsNullOrEmpty(authorization) ? null : authorization.Split($" ");
+            if (splitAuthorization.Length == 2 && !splitAuthorization.Equals("null"))
+            {
+                var authorizationArray = splitAuthorization[1].Split($".");
+                var jsonString = Encoding.UTF8.GetString(Base64UrlEncoder.DecodeBytes(authorizationArray[1]));
+                CustomerInfoDto empInfo = JsonConvert.DeserializeObject<CustomerInfoDto>(jsonString);
+                DistributedCacheEntryOptions options = new DistributedCacheEntryOptions();
+                // set the same expiration as JWT
+                DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                dateTime = dateTime.AddSeconds(empInfo.Exp).ToLocalTime();
+                options.SetAbsoluteExpiration(new DateTimeOffset(dateTime));
+                await DistributedCache.SetAsync(splitAuthorization[1], Encoding.UTF8.GetBytes("out"), options);
+            }
+            return NoContent();
         }
 
         [HttpPost(Name = nameof(AddCustomer))]
